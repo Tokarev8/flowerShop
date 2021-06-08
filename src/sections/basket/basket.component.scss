@@ -1,0 +1,57 @@
+
+
+.basketProduct{
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  height: 300px;
+  //border: 1px solid black;
+  display: grid;
+  grid-template: 1fr / 2fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  font-size: 30px;
+
+  border-bottom: 1px solid gainsboro;
+}
+
+
+
+
+
+.basketTable_counter{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  button{
+    margin: 0 10px 0 10px;
+    height:40px;
+    font-size: 30px;
+    border: none;
+    background-color: white;
+  }
+}
+
+.placeAnOrder{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 200px;
+
+  p{
+    margin-right: 2%;
+  }
+  button{
+    height: 60px;
+    width: 120px;
+    background-color: white;
+    border-color: red;
+    font-size: 20px;
+    padding:15px
+  }
+
+}

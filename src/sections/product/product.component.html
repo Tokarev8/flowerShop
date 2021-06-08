@@ -1,0 +1,48 @@
+
+
+
+  <div class="productBox">
+
+
+
+    <div class="productBox_imgBox">
+
+      <div class="productBox_listImg">
+        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="50%">
+        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="50%">
+        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="50%">
+        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="50%">
+      </div>
+
+      <div class="productBox_mainImg">
+        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="100%">
+      </div>
+    </div>
+
+
+
+    <div class="productBox_structure">
+
+      <h2>{{thisProduct.name}}</h2>
+      <h2>{{thisProduct.price}} <span>₽</span></h2>
+      <div class="productBox_buttonBox">
+        <button class="productBox_buttonBuy" (click)="buyProduct()">Купить</button>
+        <button (click)="addFavorites ()"></button>
+      </div>
+      <div>
+      <h4>Состав</h4>
+        <p>{{thisProduct.structure}}</p>
+      </div>
+    </div>
+
+
+
+
+    <div class="productBox_description">
+      <h4>Описание</h4>
+      <p class="productBox_direction">{{thisProduct.description}}</p>
+    </div>
+
+
+  </div>
+

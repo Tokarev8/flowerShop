@@ -1,0 +1,51 @@
+
+
+.favoritesElements{
+  display: grid;
+  grid-template-columns:1fr 1fr 1fr;
+  width: 900px;
+
+
+  border: 1px solid black;
+}
+
+
+
+
+
+.favoritesElements_elementBox{
+
+position: relative;
+  z-index: 0;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid black;
+
+  p, h2{
+    text-align: center;
+    margin: 0 0 5px 0;
+
+  }
+
+  button{
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+    background-color: #f368d7;
+    height: 40px;
+    border: none;
+
+  }
+
+
+
+  .favoritesElements_heart{
+    position: absolute ;
+    top: 2%;
+    left:2%;
+  }
+
+}

@@ -1,0 +1,24 @@
+
+
+
+
+<div class="favoritesElements" >
+
+  <div class="favoritesElements_elementBox" *ngFor = "let x of favorites">
+
+      <a href=""> <img src="{{x.image[0]}}" alt="" width="100%"></a>
+
+      <img src="assets/icon/2.ico" alt="" width="15%" class="favoritesElements_heart" (click)="deleteElement(x)">
+
+    <p>{{x.name}}</p>
+    <h2>{{x.price}}</h2>
+    <button (click)="buyFavoritesElement(x)">Купить</button>
+
+
+
+
+
+  </div>
+
+
+</div>
