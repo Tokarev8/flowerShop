@@ -1,6 +1,6 @@
 
-import { ProductInterface } from "../store/states/product-state";
-import { categories, flowers, reason } from "../interfaces/tags/tags-interface";
+import { categories, flowers, reason } from "../../interfaces/tags/tags-interface";
+import { ProductInterface } from "../../interfaces/product-state";
 
 
 export const originalArrayBouquets: ProductInterface[] = [];

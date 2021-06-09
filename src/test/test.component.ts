@@ -1,11 +1,11 @@
 import { HttpClient } from "@angular/common/http";
-import { ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable, Subject } from "rxjs";
-import { LoadBackService } from "../service/loadback.service";
-import { bouquetsArraySelector } from "../store/selectors/bouquet.selector";
 import { ProductInterface } from "../interfaces/product-state";
-import {initialBouquets} from "../store/actions/bouquets.actions";
+import { LoadBackService } from "../service/loadback.service";
+import { initialBouquets } from "../store/actions/bouquets.actions";
+import { bouquetsArraySelector } from "../store/selectors/bouquet.selector";
 
 @Component({
   selector: "test",

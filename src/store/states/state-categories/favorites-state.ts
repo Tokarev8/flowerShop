@@ -1,4 +1,4 @@
-import { ProductInterface } from "./product-state";
+import { ProductInterface } from "../../../interfaces/product-state";
 
 
 export interface FavoritesStateIntefrace {

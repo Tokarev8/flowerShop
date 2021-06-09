@@ -1,4 +1,12 @@
 
+@font-face {
+  font-family: BantyBold; /* Имя шрифта */
+  src: url(../../assets/font/BantyBold.ttf);
+}
+
+
+
+
 
 .headerBlock{
 
@@ -18,24 +26,11 @@ margin-bottom: 200px;
   height: 80px;
   font-family: Arial;
   font-size: 18px;
+  text-align: center;
 
 
-  ul{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-  ul li{
-    list-style-type: none;
-    display: inline-block;
-    margin-right: 2%;
 
-    a{
-      text-decoration: none;
-    }
 
-  }
 
 
 

@@ -1,6 +1,6 @@
 import { Action, createAction, props} from "@ngrx/store";
+import { ProductInterface } from "../../interfaces/product-state";
 import { BouquetsState } from "../states/state-categories/bouquets-state";
-import {ProductInterface} from "../../interfaces/product-state";
 
 
 export enum stateActionsType {

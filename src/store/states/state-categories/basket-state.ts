@@ -1,4 +1,4 @@
-import { initialStateProduct, ProductInterface } from "./product-state";
+import { initialStateProduct, ProductInterface } from "../../../interfaces/product-state";
 
 
 export interface ProductBasketInterface {

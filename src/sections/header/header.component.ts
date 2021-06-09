@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ProductInterface } from "../store/states/product-state";
+import { ProductInterface } from "../../interfaces/product-state";
 
 @Component({
   selector: "header-component",

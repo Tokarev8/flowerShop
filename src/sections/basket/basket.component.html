@@ -1,34 +1,35 @@
 
 
+<div class="Padding">
 
+  <div  class="basketProduct" *ngFor = "let element of basketArray.productArray" >
 
-<div  class="basketProduct" *ngFor = "let element of basketArray.productArray" >
+    <div >
+      <img src="{{element.product.image[0]}}" alt="" width="55%">
+    </div>
 
-  <div >
-    <img src="{{element.product.image[0]}}" alt="" width="55%">
+    <div>
+      <p>{{element.product.name}}</p>
+    </div>
+
+    <div>
+      <td><p>Удалить</p></td>
+    </div>
+
+    <div class="basketTable_counter">
+      <button (click)="decrise(element)">  - </button>
+      <p>  {{element.quantity}} </p>
+      <button (click)="incrise(element)">  + </button>
+    </div>
+
+    <div>
+      <p>{{element.product.price}}</p>
+    </div>
+
   </div>
 
-  <div>
-    <p>{{element.product.name}}</p>
+  <div class="placeAnOrder">
+    <p>Итого : {{basketArray.sumPriceArray}}</p>
+    <button>КУПИТЬ</button>
   </div>
-
-  <div>
-    <td><p>Удалить</p></td>
-  </div>
-
-  <div class="basketTable_counter">
-    <button (click)="decrise(element)">  - </button>
-    <p>  {{element.quantity}} </p>
-    <button (click)="incrise(element)">  + </button>
-  </div>
-
-  <div>
-    <p>{{element.product.price}}</p>
-  </div>
-
-</div>
-
-<div class="placeAnOrder">
-  <p>Итого : {{basketArray.sumPriceArray}}</p>
-  <button>КУПИТЬ</button>
 </div>

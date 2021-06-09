@@ -1,15 +1,4 @@
-import { categories, flowers, reason } from "../../interfaces/tags/tags-interface";
 
-/*
-export interface TagArray {
-  categories?: categories;
-  flowers?: flowers[];
-  reason?: reason[];
-}
-
-export const initialStateTagArray: TagArray = {
-};
-*/
 
 export interface ProductInterface {
   name: string;
@@ -39,7 +28,3 @@ export const initialStateProduct: ProductInterface = {
   favorite: false,
 };
 
-
-/*
-Сделал продукт, на сонове которого будут строиться остальные эелементы
- */

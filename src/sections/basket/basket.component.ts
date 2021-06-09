@@ -2,9 +2,9 @@
 
 
 import { Component, OnInit } from "@angular/core";
-import { originalArrayBouquets } from "../array-product/bouquets";
-import { BasketInterface, ProductBasketInterface } from "../store/states/basket-state";
-import { ProductInterface } from "../store/states/product-state";
+import { ProductInterface } from "../../interfaces/product-state";
+import { BasketInterface, ProductBasketInterface } from "../../store/states/state-categories/basket-state";
+import { originalArrayBouquets } from "../../test/array-product/bouquets";
 
 @Component({
   selector: "basket-component",

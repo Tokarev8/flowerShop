@@ -1,5 +1,5 @@
 
-import { ProductInterface } from "./product-state";
+import { ProductInterface } from "../../../interfaces/product-state";
 
 export interface FlowersStateInterface {
   array: ProductInterface[];

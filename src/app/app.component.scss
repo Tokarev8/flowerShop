@@ -1,0 +1,29 @@
+
+
+app-component{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.headerBlock{
+  height: 10px;
+}
+
+
+.workWindow {
+  margin-top: 330px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  height: 10px;
+
+}
+
+
+footer-component{
+  flex: 0 0 auto;
+}
+
+

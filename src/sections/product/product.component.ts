@@ -1,7 +1,7 @@
 
 import { Component, Input, OnInit } from "@angular/core";
-import { originalArrayBouquets } from "../array-product/bouquets";
-import { ProductInterface } from "../store/states/product-state";
+import { originalArrayBouquets } from "../../test/array-product/bouquets";
+import { ProductInterface } from "../../interfaces/product-state";
 
 @Component({
   selector: "product-component",
