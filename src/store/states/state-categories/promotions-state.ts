@@ -6,6 +6,6 @@ export interface PromotionsStateInterface {
 
 }
 
-export const  initialPromotionsState: PromotionsStateInterface = {
+export const  initializtionPromotionsState: PromotionsStateInterface = {
   array: []
 };

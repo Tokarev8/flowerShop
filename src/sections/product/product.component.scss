@@ -1,87 +1,171 @@
 
 
-.productBox{
-  width: 700px;
-  border: 0.5px solid grey;
-  border-radius: 5%;
-  padding: 2%;
 
-  display: grid;
-  grid-template: 3fr 1fr / 2fr 1fr;
-  column-gap: 10%;
+.ProductBox{
+  padding-top: 200px;
+  margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  height: 500px;
+
+  //border: 1px solid black;
+
+  display: flex;
+
 
 }
 
-
-
-.productBox_structure{
- // grid-template: 1fr 1fr 1fr 1fr / 1fr;
-  // grid-auto-rows: auto;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr
-  // border: 2px solid red;
-
-}
-
-
-.productBox_buttonBox{
-
-  display:flex;
-  flex-direction:row;
-
-
-  :first-child{
-    width: 60%;
-    height: 40px;
-    margin-right: auto;
-    background-color: #f368d7;
-   // color: aliceblue;
-    border: none;
-    border-radius: 5%;
-  }
-
-  :last-child{
-    height: 40px;
-    width: 40px;
-    margin-right: 10%;
-    background-image: url("../../assets/icon/18.png");
-    background-size: 100%;
-    //border: none;
-    border: 0.5px solid grey;
-    border-radius: 15%;
-
-  }
-}
 
 .productBox_imgBox{
+  width: 60%;
+  height: 100%;
   display: grid;
-  grid-template: 1fr / 1fr 4fr;
-  row-gap: 0;
-  // border: 0.5px solid grey;
-
+  grid-template-columns: 1fr 4fr;
+  //border: 1px solid green;
 
   .productBox_listImg{
-    // padding-top: 10%;
-    display: grid;
-    grid-template: 1fr 1fr 1fr 1fr / 1fr ;
+    width: 90%;
+    padding-right: 5%;
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+    //border: 1px solid blue;
+    .listImg{
+      margin-top: 15px;
 
+      width: 100%;
+      height: 20%;
+      overflow: hidden;
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+    :first-child{margin-top: 0;}
+  }
+
+
+  .productBox_mainImg{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    justify-content: center;
     align-items: center;
 
+    border: 1px solid white;
+    border-radius: 16px;
     img{
-      padding: 5%;
-      //border: 0.5px solid #f368d7;
-      //border-radius: 15%;
+      display: block;
+      width: 100%;
+
+      padding: 0;
+      margin: 0;
     }
   }
 
 }
 
+.listImg:hover{
+  border-radius: 15px;
+  border:  1px solid #940577;
+}
+
+/////////////////////////////////////
+
+.productBox_structure{
+  width: 40%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  .productBox_NamePrice{
+    padding-left: 10%;
+    //border: 1px solid green;
+    height: 30%;
+    display: grid;
+    align-items: stretch;
+    //align-content: space-evenly;
+    align-content: space-around;
+    p{
+      font-size: 26px;
+      font-weight: bold;
+    }
+  }
+
+  .productBox_buttonBox{
+    height: 30%;
+    padding-left: 10%;
+    display: grid;
+    align-items: center;
+    //border: 1px solid black;
+
+    .buttonFlex{
+      display: flex;
+
+      .productBox_buttonBuy{
+        width: 150px;
+        height: 45px;
+        background-color: #f368d7;
+      }
+
+      .favoriteButton{
+
+        height: 45px;
+        display: grid;
+        align-items: center;
+
+        button{
+          background-color: white;
+          border: none;
+        }
+      }
+    }
+
+  }
 
 
+
+
+  .struct{
+    height: 40%;
+    display: grid;
+    align-items: end;
+
+    :first-child{
+      padding-left: 10%;
+      padding-right: 10%;
+      :first-child{
+        //border: 1px solid;
+        font-size: 20px;
+      }
+      :last-child{
+        //border: 1px solid;
+      }
+    }
+
+  }
+
+}
 
 .productBox_description{
-  grid-column-start: 1;
-  grid-column-end: 3;
-  text-align: center;
+  max-width: 70%;
+  display:flex;
+  flex-direction: column;
+  justify-items: center;
+  margin-right: auto;
+  margin-left: auto;
 
+  padding-bottom: 50px;
+  :first-child{
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 26px;
+    font-weight: bold;
+  }
+  :last-child{
+    font-size: 20px;
+  }
 }

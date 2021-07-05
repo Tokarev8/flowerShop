@@ -7,6 +7,6 @@ export interface GiftsStateInterface {
 
 }
 
-export const  initialGiftsState: GiftsStateInterface = {
+export const  inizializationGiftsState: GiftsStateInterface = {
   array: []
 };

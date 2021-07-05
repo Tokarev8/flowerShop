@@ -1,0 +1,61 @@
+
+
+<div class="menu">
+
+  <div class="menu_price">
+    <p>Цена</p>
+    <ul>
+      <li>
+        <input type="number" placeholder="От" [(ngModel)]="minPrice" (input)="menuService.SetMinPrice( minPrice)" min="0">
+      </li>
+      <li>
+        <input type="number" placeholder="До" [(ngModel)]="maxPrice" (input)="menuService.SetMaxPrice( maxPrice)" min="0">
+      </li>
+    </ul>
+  </div>
+
+  <div class="menu_flowers">
+    <p>Цветы</p>
+    <ul>
+      <li *ngFor ="let flower of arrayFlowers; let i = index; " >
+        <p (click)="addFlowersTag(arrayFlowers[i])"
+           [class.ActiveTag]="activeTagArrayFlower.includes(arrayFlowers[i])">
+          {{arrayFlowers[i]}}
+        </p>
+        <p (click)="addFlowersTag(arrayFlowers2[i])"
+           [class.ActiveTag]="activeTagArrayFlower.includes(arrayFlowers2[i])">
+          {{arrayFlowers2[i]}}
+        </p>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="menu_reason">
+    <p>Повод...</p>
+    <ul>
+      <li *ngFor ="let reason of arrayReasons; let i = index; " >
+        <p  (click)="addReasonTage(arrayReasons[i])"
+            [class.ActiveTag]="activeTagArrayReason.includes(arrayReasons[i])"
+        >{{arrayReasons[i]}}</p>
+
+        <p  (click)="addReasonTage(arrayReasons2[i])"
+            [class.ActiveTag]="activeTagArrayReason.includes(arrayReasons2[i])"
+        >{{arrayReasons2[i]}}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="menu_sort">
+    <p>Сортировать</p>
+    <ul>
+      <li><p (click)="sortPopular()">Популярность <span>{{sortTextPopular}}</span></p></li>
+      <li><p (click)="sortPrice()">Цена <span>{{sortTextPrice}}</span></p> </li>
+    </ul>
+  </div>
+
+  <div class="menu_search">
+    <input type="text" placeholder="Поиск" (input)="menuService.setSearchText($event)">
+  </div>
+
+</div>

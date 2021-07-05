@@ -2,84 +2,55 @@
 
 
 import { Component, OnInit } from "@angular/core";
-import { ProductInterface } from "../../interfaces/product-state";
-import { BasketInterface, ProductBasketInterface } from "../../store/states/state-categories/basket-state";
-import { originalArrayBouquets } from "../../test/array-product/bouquets";
+
+import { BasketInterface } from "../../store/states/state-categories/basket-state";
+import { BasketService } from "./basket.service";
+
 
 @Component({
   selector: "basket-component",
   templateUrl: "./basket.component.html",
-  styleUrls: ["./basket.component.scss"]
+  styleUrls: ["./basket.component.scss", "./basket.style.scss"]
 })
 export class BasketComponent  {
 
-
-  public basketProduct: ProductBasketInterface = {
-    product: originalArrayBouquets[0],
-    quantity: 1,
-    sumPrice: originalArrayBouquets[0].price
-  };
-
-
-  public basketArray: BasketInterface = {
-    productArray: [],
-    sumPriceArray: 0
-  };
-
-
-  constructor() {
-
-
-
-    this.basketArray.productArray.push(this.basketProduct);
-    this.basketProduct = {
-      product: originalArrayBouquets[1],
-      quantity: 1,
-      sumPrice: originalArrayBouquets[1].price
-    };
-    this.basketArray.productArray.push(this.basketProduct);
-
-
-
-    this.basketProduct = {
-      product: originalArrayBouquets[2],
-      quantity: 1,
-      sumPrice: originalArrayBouquets[2].price
-    };
-    this.basketArray.productArray.push(this.basketProduct);
-
-
-    this.basketProduct = {
-      product: originalArrayBouquets[3],
-      quantity: 1,
-      sumPrice: originalArrayBouquets[3].price
-    };
-    this.basketArray.productArray.push(this.basketProduct);
-
-
+  constructor(public basketService: BasketService) {
   }
 
 
-  public decrise( element: ProductBasketInterface ): void {
-    if (element.quantity > 0 ) {
-    element.quantity--;
-    element.sumPrice = element.quantity * element.product.price;
-    this.sumPriceArray(this.basketArray);
+
+
+
+
+
+  public decrise( element: BasketInterface ): void {
+    if (element.quantity > 1) {
+      const copyElement: BasketInterface =  Object.assign({}, element);
+      copyElement.quantity--;
+      this.basketService.changeQuantity(copyElement);
     }
   }
 
-  public incrise( element: ProductBasketInterface ): void {
-    // element.quantity++;
-    element.quantity = element.quantity + 1;
-    element.sumPrice = element.quantity * element.product.price;
-    this.sumPriceArray(this.basketArray);
 
+  public incrise( element: BasketInterface ): void {
+    const copyElement: BasketInterface =  Object.assign({}, element);
+    copyElement.quantity++;
+    this.basketService.changeQuantity(copyElement);
   }
 
 
   public sumPriceArray (busketArray: BasketInterface): void {
-    this.basketArray.sumPriceArray = this.basketArray.productArray.reduce( (previousValue , array) => previousValue  + array.sumPrice, 0 );
+    // this.basketArray.sumPriceArray = this.basketArray.productArray.reduce( (previousValue , array) => previousValue  + array.sumPrice, 0 );
   }
 
 
+
+
+
 }
+
+/*
+
+
+
+ */

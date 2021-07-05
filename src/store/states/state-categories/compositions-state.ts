@@ -2,11 +2,11 @@
 
 import { ProductInterface } from "../../../interfaces/product-state";
 
-export interface CompositionsStateInterface {
+export interface CompositionStateInterface {
   array: ProductInterface[];
 
 }
 
-export const  initialCompositionsState: CompositionsStateInterface = {
+export const  inizializationCompositionState: CompositionStateInterface = {
   array: []
 };

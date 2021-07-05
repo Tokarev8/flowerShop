@@ -1,0 +1,264 @@
+
+.menu{
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+  height: 35px;
+  font-size: 22px;
+  font-family: "Measure";
+  font-weight: 500;
+  letter-spacing: 1px;
+  background-color: #f3f3f3;
+  border-radius: 6px;
+  color: #8e8e8e;
+
+
+  display: grid;
+  grid-template: 1fr/ 3fr 5fr 3fr 3fr 5fr;
+  align-items: end;
+
+
+
+
+
+  div{
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    border-right: 2px solid #bcbcbc;
+
+    p{
+      padding: 0 0 0 15px;
+      margin: 0;
+
+
+    }
+
+    input{
+      box-sizing: border-box;
+      padding: 0 0 0 15px;
+      margin-right: 5px;
+      font-size: 20px;
+      width: 100%;
+      height: 25px;
+      border: none ;
+      outline:none  ;
+      box-shadow: none;
+      background-color: #f3f3f3;
+      color:#8e8e8e;
+      font-family: "Measure";
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+
+    input::placeholder{
+
+      color:#bcbcbc;
+      font-family: "Measure";
+      font-weight: 500;
+      letter-spacing: 1px;
+      font-size: 22px;
+
+    }
+
+
+
+  }
+
+  :last-child{
+    border-right: none;
+  }
+}
+
+// настройка подменю цена
+
+.menu_price{
+  position: relative;
+  width: 100%;
+  ul{
+    display: none;
+    width: 100%;
+    padding-left: 0;
+    list-style-type: none;
+    position: absolute;
+    top: 11px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color:#f3f3f3 ;
+    z-index: 1;
+    li{
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      input{
+        border: 1px solid #bcbcbc ;
+      }
+    }
+  }
+}
+.menu_price:hover{
+  //background-color: #f3f3f3;
+  ul{
+    display: block;
+    border-radius: 6px;
+  }
+}
+
+
+
+
+
+
+
+
+
+// настройка подменю цветы
+
+
+.menu_flowers {
+  position: relative;
+  box-sizing: border-box;
+  ul{
+    display: none;
+    list-style-type: none;
+    position: absolute;
+    top: 11px;
+    background-color:#f3f3f3 ;
+    z-index: 1;
+    padding: 0;
+    li{
+      user-select: none;
+      padding-top: 20px;
+      display: flex;
+      p{
+        cursor: pointer;
+        //padding-right: 4%;
+        padding-left: 6%;
+        width: 40%;
+      }
+    }
+    :last-child{
+      p{margin-bottom: 30px}
+    }
+  }
+}
+.menu_flowers:hover{
+
+  ul{
+
+    border-radius: 6px;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+  }
+}
+
+
+
+
+// настройка подменю повод
+
+.menu_reason {
+  position: relative;
+  box-sizing: border-box;
+  ul{
+    display: none;
+    list-style-type: none;
+    position: absolute;
+    top: 11px;
+    left: 0;
+    background-color:#f3f3f3 ;
+    z-index: 1;
+    li{
+      user-select: none;
+      padding-top: 20px;
+      display: flex;
+      p{
+        cursor: pointer;
+        width: 40%;
+      }
+      margin: auto;
+    }
+    :last-child{ p{padding-bottom: 30px}}
+  }
+}
+.menu_reason:hover{
+  ul{
+    border-radius: 6px;
+    width: 200%;
+    display: block;
+    box-sizing: border-box;
+
+  }
+}
+
+
+
+
+
+
+
+// настройка подменю сортировка
+
+
+.menu_sort{
+  position: relative;
+  box-sizing: border-box;
+  ul{
+    display: none;
+    list-style-type: none;
+    position: absolute;
+    top: 11px;
+    background-color:#f3f3f3 ;
+    padding-left: 0;
+    z-index: 1;
+    li{
+      user-select: none;
+      padding-top: 30px;
+      cursor: pointer;
+      p{
+        color: #8e8e8e;
+        width: 100%;
+        margin-right: auto;
+      }
+    }
+    :last-child{ p{padding-bottom: 30px}}
+  }
+}
+.menu_sort:hover{
+  ul{
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+  }
+}
+
+
+
+
+.ActiveTag{
+  color: red;
+}
+
+
+
+
+@media (max-width: 600px) {
+  .menu{
+    display: none;
+  }
+}
+
+
+
+
+
+@font-face {
+
+  font-family: "Measure";
+
+  src: url("../../../assets/font/Measure.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}

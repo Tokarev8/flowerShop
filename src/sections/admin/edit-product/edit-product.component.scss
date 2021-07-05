@@ -1,0 +1,179 @@
+
+.editFormBox{
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid #bcbcbc;
+
+
+
+
+
+
+}
+
+.form-TA{
+
+
+  textarea{
+    display: none;
+
+  }
+
+  .labelTA{
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 5px;
+    height: 30px;
+
+    label{
+      display: block;
+    }
+  }
+
+
+  .hide{
+    font-size: 16px;
+    display: block;
+    resize: none;
+    height: 100px;
+    width: 100%;
+    padding: 5px ;
+
+    box-sizing: border-box;
+  }
+}
+
+
+
+
+.form-control{
+  display: flex;
+  flex-direction: column;
+
+  :first-child{
+    margin-bottom: 5px;
+
+  }
+  :last-child{
+    font-size: 16px;
+    height: 25px;
+  }
+
+  margin-bottom: 20px;
+
+
+}
+
+
+
+
+
+.form-addTag{
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+  button{
+    width: 170px;
+    height: 25px;
+    margin-bottom: 10px;
+  }
+
+  input{width: 100%;   height: 25px;       box-sizing: border-box;}
+
+
+  .Array{
+
+    border-radius: 3px;
+    display: inline;
+    margin-bottom: 10px;
+
+    label{
+      background: white;
+      margin-right: 5px;
+      margin-top: 5px;
+      display: inline-block;
+      border: 1px solid #bcbcbc;
+      padding: 5px;
+    }
+
+    .frame{
+      background: #bcbcbc;
+    }
+
+
+  }
+
+}
+
+
+.hiddenTag{
+  display: none ;
+}
+
+.showTag{
+  display: none ;
+}
+
+
+
+.form-photo{
+  margin-top: 10px;
+  width: 100%;
+  button{
+    width: 170px;
+    height: 25px;
+    margin-bottom: 10px;
+  }
+  input{
+    width: 100%;
+    height: 25px;
+    box-sizing: border-box;
+  }
+
+}
+
+
+.submitButton{
+  margin-top: 20px;
+  display: grid;
+  justify-content: center;
+
+  button{
+    width: 170px;
+    height: 25px;
+  }
+}
+
+
+
+
+
+
+small{
+  margin-top: 5px;
+  color:red;
+}
+
+
+.valid{
+
+  border: 2px solid #14ac29;
+}
+
+.invalid{
+  border: 2px solid red;
+
+}
+.borderGrey{
+  border: 1px solid #bcbcbc;
+}

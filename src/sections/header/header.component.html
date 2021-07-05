@@ -3,21 +3,69 @@
 <div class="headerBlock">
 
   <div class="headerBlock_title">
-        <h1>Botanica Decor</h1>
+
+    <div class="title">
+      <a href=""><h1>Botanica Decor</h1></a>
+    </div>
+
+    <div class="headerBlock_contacts">
+      <p>+7-855-613-2156</p>
+      <div class="headerBlock_socialNetworks">
+        <a href=""> <img src="../../assets/icon/Telegram.png" alt=""></a>
+        <a href=""> <img src="../../assets/icon/TikTok.png" alt=""></a>
+        <a href=""> <img src="../../assets/icon/Viber.png" alt=""></a>
+        <a href=""> <img src="../../assets/icon/vk.png" alt=""></a>
+        <a href=""> <img src="../../assets/icon/WhatsApp.png" alt=""></a>
+        <a href=""> <img src="../../assets/icon/instagram.png" alt=""></a>
+      </div>
+
+    </div>
+
   </div>
 
 
 
+
+
   <nav class="headerBlock_topMenu">
+
+    <div class="buttonBurger">
+      <button (click)="burger()"
+              [ngClass]="{
+              activeBurger:switchBurger
+              }"
+      ></button>
+    </div>
+
     <ul>
-      <li>  <a href="">Букеты</a> </li>
-      <li>  <a href="">Цветы</a>  </li>
-      <li>  <a href="">Композиции</a> </li>
-      <li>  <a href="">Подарки</a>  </li>
-      <li>  <a href="">Акции</a>  </li>
-      <li>  <a routerLink="/favorites" >Избранные</a>  </li>
-      <li>  <a routerLink="/basket">Корзина</a>  </li>
+      <li >  <a routerLink="/bouquets"  routerLinkActive="active">Букеты</a> </li>
+      <li>  <a routerLink="/flowers"   routerLinkActive="active">Цветы </a>  </li>
+      <li>  <a routerLink="/compositions"  routerLinkActive="active">Композиции</a> </li>
+      <li>  <a routerLink="/gifts"  routerLinkActive="active">Подарки</a>  </li>
+      <li>  <a routerLink="/promotions"  routerLinkActive="active">Акции</a>  </li>
+      <li>  <a routerLink="/favorites"   routerLinkActive="active"> Избранные </a>  </li>
+      <li>  <a routerLink="/basket"  routerLinkActive="active">Корзина</a>  </li>
+      <li>  <a routerLink="/admin/login"  routerLinkActive="active">Войти</a>  </li>
     </ul>
+
+
+
   </nav>
 
 </div>
+
+
+
+<nav class="topMenuBurger"
+     [ngClass]= "{activeBurg: switchBurger}">
+  <ul>
+    <li>  <a routerLink="/admin/login"  routerLinkActive="active">Войти</a>  </li>
+    <li >  <a routerLink="/bouquets" (click)="burger()" routerLinkActive="active">Букеты</a> </li>
+    <li>  <a routerLink="/flowers" (click)="burger()"  routerLinkActive="active">Цветы </a>  </li>
+    <li>  <a routerLink="/compositions" (click)="burger()"  routerLinkActive="active">Композиции</a> </li>
+    <li>  <a routerLink="/gifts" (click)="burger()"  routerLinkActive="active">Подарки</a>  </li>
+    <li>  <a routerLink="/promotions" (click)="burger()"  routerLinkActive="active">Акции</a>  </li>
+    <li>  <a routerLink="/favorites" (click)="burger()"  routerLinkActive="active"> Избранные </a>  </li>
+    <li>  <a routerLink="/basket" (click)="burger()"  routerLinkActive="active">Корзина</a>  </li>
+  </ul>
+</nav>

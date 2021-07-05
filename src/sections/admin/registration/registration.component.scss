@@ -1,0 +1,76 @@
+
+
+form{
+  margin-top: 50px;
+  width: 700px;
+  border: 1px solid black;
+  height: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h3{
+  display: grid;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.FormControl{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 25px;
+
+  :first-child{
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+  }
+  :last-child{
+    height: 20px;
+  }
+
+}
+
+.password{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 25px;
+
+  :first-child{
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+  }
+  input{
+    margin-bottom: 10px;
+    height: 20px;
+  }
+}
+
+
+.SubmitBox{
+  margin-top: 50px;
+  display: grid;
+  justify-content: center;
+}
+
+
+.errorsLog{
+  color: red;
+  margin-bottom: 10px;
+}
+
+
+.valid{
+  border: 2px solid #14ac29;
+}
+
+.invalid{
+  border: 2px solid red;
+}

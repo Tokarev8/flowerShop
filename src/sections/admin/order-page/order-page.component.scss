@@ -1,0 +1,214 @@
+
+.OrdersBlock {
+  margin-top: 25px;
+  width: 100%;
+
+  h2{
+    text-align: center;
+  }
+
+
+
+}
+
+
+.OrdersBlock_order{
+  //border: 1px solid red;
+  user-select: none;
+  //box-shadow:  0 0 10px #940577;
+  box-shadow:  0 0 10px #8e8e8e;
+
+  //border-bottom: 3px solid #8e8e8e;
+
+  display: grid;
+    width: 80%;
+  height: 80px;
+  margin-right: auto;
+  margin-left: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 15px;
+
+  div{
+    align-self: center;
+    justify-self: center;
+  }
+
+
+}
+
+
+
+.canceled{
+  box-shadow:  0 0 10px red;
+}
+
+.completed{
+  box-shadow:  0 0 10px green;
+}
+
+
+
+.pageNumber{
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  p{
+    display: grid;
+    align-content: center;
+    padding: 4px;
+
+    margin-left: 8px;
+    margin-right: 8px;
+    user-select: none;
+    transition: 0.3s;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: bold;
+
+  }
+
+  p:active{
+    box-shadow:  0 0 3px #940577;
+    background-color: #940577;
+
+
+  }
+
+  div{
+    //border: 1px solid black;
+    display: grid;
+    align-content: center;
+
+  }
+
+  input{
+    display: block;
+    //border: 1px solid red;
+    width: 35px;
+    height: 25px;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sortBox{
+  border: 1px solid red;
+  margin-right: auto;
+  margin-left: auto;
+width: 80%;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 80px;
+}
+
+
+.sortBox_selectSort{
+  display:flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+
+  label{
+    margin-bottom: 10px;
+  }
+
+  //idth: 200px;
+
+  select{
+    font-size: 16px;
+    width: 150px;
+    height: 30px;
+  }
+}
+
+
+
+.sortBox_date{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  div{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-content: center;
+
+    label{
+      justify-self: end;
+      align-self: center;
+    }
+    input{
+      width: 200px;
+      margin-left: 10px;
+      height: 30px;
+
+    }
+
+  }
+
+
+
+}
+
+.sortBox_numberOrder{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  div{
+    label{
+      margin-right: 10px;
+    }
+    input{    font-size: 16px;}
+  }
+
+
+
+}
+
+
+.sortBox_condition{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+
+  div{
+    display: flex;
+    //grid-template-columns: 1fr 1fr;
+    //align-content: center;
+  }
+
+}
+
+
+.hide{
+  display: none;
+}

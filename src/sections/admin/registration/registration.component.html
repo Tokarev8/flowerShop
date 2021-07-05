@@ -1,0 +1,120 @@
+
+
+<div class="">
+
+  <form [formGroup]="formReg" (ngSubmit) = "submit()">
+
+
+      <h3>Регистрация</h3>
+
+    <div class="FormControl">
+
+      <label for="Login">Login</label>
+      <input type="text" id="Login" formControlName="login"
+             [ngClass] = "{
+              valid: !formReg.get('login')?.invalid && formReg.get('login')?.touched,
+              invalid: formReg.get('login')?.invalid && formReg.get('login')?.touched}">
+      <div *ngIf = "formReg.get('login')?.invalid && formReg?.get('login')?.touched"
+           class="errorsLog">
+        <div *ngIf = "!formReg.get('login')?.value">
+<!--          <small>Введите корректный логин</small>-->
+          <small>Поле "Login" не может быть пустым</small>
+        </div>
+
+        <div>
+          <small *ngIf = "formReg.get('login')?.errors?.minlength"> Login должен быть больше 6 символов</small>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+    <div class="password">
+
+      <label for="password" >Password</label>
+      <input type="text" id="password" placeholder="Пароль"
+               formControlName="password"
+               [ngClass] = "{
+              valid: !formReg.get('password')?.invalid && formReg.get('password')?.touched,
+              invalid: formReg.get('password')?.invalid && formReg.get('password')?.touched}">
+
+        <div
+          class="errorsLog"
+          *ngIf = "formReg.get('password')?.invalid && formReg?.get('password')?.touched">
+
+          <div *ngIf = "!formReg.get('password')?.value">
+            <small>Поле "Password" не может быть пустым</small>
+          </div>
+
+          <div>
+            <small *ngIf = "formReg.get('password')?.errors?.minlength"> Пароль должен быть больше 8 символов</small>
+          </div>
+
+        </div>
+
+
+
+        <input type="text" id="ReepeatedPassword" placeholder="Повторите пароль"
+               formControlName="repeatPassword"
+               [ngClass] = "{
+              valid: !formReg.get('repeatPassword')?.invalid && formReg.get('repeatPassword')?.touched,
+              invalid: formReg.get('repeatPassword')?.invalid && formReg.get('repeatPassword')?.touched}"
+        >
+
+        <div *ngIf ="formReg.get('repeatPassword')?.invalid && formReg.get('repeatPassword')?.touched"
+             class="errorsLog">
+          <div *ngIf = "!formReg.get('repeatPassword')?.value">
+            <small>Поле "Password" не может быть пустым</small>
+          </div>
+          <small *ngIf="formReg.get('repeatPassword')?.errors?.someError">Пароли не совпадают</small>
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="FormControl">
+
+      <label for="email" >Email</label>
+      <input type="text" id="email" formControlName="email"
+             [ngClass] = "{
+              valid: !formReg.get('email')?.invalid && formReg.get('email')?.touched,
+              invalid: formReg.get('email')?.invalid && formReg.get('email')?.touched}">
+
+      <div *ngIf ="formReg.get('email')?.invalid && formReg.get('email')?.touched"
+           class="errorsLog">
+
+        <div *ngIf="!formReg.get('email')?.value">
+          <small >Поле "Email" не может быть пустым</small>
+        </div>
+
+        <div *ngIf="formReg.get('email')?.errors?.email">
+          <small >Введён некорректный email</small>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="SubmitBox">
+      <button type="submit"  [disabled]="formReg.invalid">Зарегистрировать</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+  </form>
+
+</div>

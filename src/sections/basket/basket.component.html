@@ -2,18 +2,18 @@
 
 <div class="Padding">
 
-  <div  class="basketProduct" *ngFor = "let element of basketArray.productArray" >
+  <div  class="basketProduct" *ngFor = "let element of basketService.copyArray" >
 
-    <div >
-      <img src="{{element.product.image[0]}}" alt="" width="55%">
+    <div class="basketProduct_imageBlock">
+      <img src="{{element.image[0]}}" alt="" >
     </div>
 
-    <div>
-      <p>{{element.product.name}}</p>
+    <div class="basketProduct_nameProduct">
+      <p>{{element.name}}</p>
     </div>
 
-    <div>
-      <td><p>Удалить</p></td>
+    <div class="basketProduct_deleteButton">
+      <button class="delete" (click)="basketService.deleteElement(element._id)"></button>
     </div>
 
     <div class="basketTable_counter">
@@ -22,14 +22,19 @@
       <button (click)="incrise(element)">  + </button>
     </div>
 
-    <div>
-      <p>{{element.product.price}}</p>
+
+
+    <div class="basketTable_price">
+      <p>{{element.price * element.quantity}}</p>
     </div>
 
   </div>
 
+
   <div class="placeAnOrder">
-    <p>Итого : {{basketArray.sumPriceArray}}</p>
-    <button>КУПИТЬ</button>
+    <p>Итого : {{basketService.sumPrice}} </p>
+    <button (click)="basketService.orderAdd()" [disabled] = "!basketService.copyArray.length">Оформить заказ</button>
   </div>
 </div>
+
+

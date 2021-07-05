@@ -1,0 +1,178 @@
+
+
+
+
+
+<div class="editFormBox">
+
+  <form [formGroup]="myform"  (ngSubmit) = "submit()">
+
+
+    <div class="form-control">
+      <label>Категория</label>
+      <select formControlName="category" [value]="productService.product.categories"
+              [ngClass] = "{
+              valid: !myform.get('category')?.invalid && myform.get('category')?.touched,
+              invalid: myform.get('category')?.invalid && myform.get('category')?.touched}">
+        <option value="Букеты">Букеты</option>
+        <option value="Композиция">Композиция</option>
+        <option value="Подарки">Подарки</option>
+        <option value="Цветы">Цветы</option>
+      </select>
+      <div *ngIf = "myform.get('category')?.invalid && myform?.get('category')?.touched">
+        <small>Выберите категорию !</small>
+      </div>
+    </div>
+
+
+
+
+    <div class="form-control">
+      <label>Название</label>
+      <input type="text" formControlName="name" [value]="productService.product.name"
+             [ngClass] = "{
+              valid: !myform.get('name')?.invalid && myform.get('name')?.touched,
+              invalid: myform.get('name')?.invalid && myform.get('name')?.touched}">
+
+      <div *ngIf = "myform.get('name')?.invalid && myform?.get('name')?.touched">
+        <small>Введите наименование товара</small>
+      </div>
+    </div>
+
+
+    <div class="form-control">
+      <label>Цена</label>
+      <input type="number" formControlName="price" [value]="productService.product.price"
+             [ngClass] = "{
+              valid: !myform.get('price')?.invalid && myform.get('price')?.touched,
+              invalid: myform.get('price')?.invalid && myform.get('price')?.touched}">
+      <div *ngIf = "myform.get('price')?.invalid && myform?.get('price')?.touched">
+        <small *ngIf = "!myform.get('price')?.value ">Введите стоимость товара</small>
+        <small *ngIf = "myform.get('price')?.errors?.min ">Цена не может быть меньше 0</small>
+      </div>
+    </div>
+
+
+    <div class="form-control">
+      <label>Популярность</label>
+      <input type="number" formControlName="popularity" [value]="productService.product.popularity"
+             [ngClass] = "{
+              valid: !myform.get('popularity')?.invalid && myform.get('popularity')?.touched,
+              invalid: myform.get('popularity')?.invalid && myform.get('popularity')?.touched}">
+      <div *ngIf = "myform.get('popularity')?.invalid && myform?.get('popularity')?.touched">
+        <small *ngIf = "!myform.get('popularity')?.value ">Введите популярность товара</small>
+        <small *ngIf = "myform.get('popularity')?.errors?.min ">Рейтинг не может быть меньше 0</small>
+        <small *ngIf = "myform.get('popularity')?.errors?.max ">Рейтинг не может быть больше 100</small>
+      </div>
+    </div>
+
+
+    <div class="form-addTag">
+      <button (click)="showFlowers()">Добавить тег цветы</button>
+
+      <div [ngClass] = "{
+        hiddenTag:!hideF, Array: hideF}">
+        <label *ngFor="let flower of flowersTagArray"   (click)="addFlower(flower)"
+               [ngClass] = "{frame: flowersActiveTag.includes(flower)}"
+        >{{flower}} </label>
+      </div>
+
+      <input type="text"
+             formControlName="flowers"
+
+             [ngClass] = "{
+              valid: !myform.get('flowers')?.invalid && myform.get('flowers')?.touched,
+              invalid: myform.get('flowers')?.invalid && myform.get('flowers')?.touched}">
+    </div>
+
+
+
+    <div class="form-addTag">
+      <button (click)="showReason()" >Добавить тег повод</button>
+      <div  [ngClass] = "{hiddenTag:!hideR, Array: hideR}">
+
+        <label *ngFor="let reason of reasonsTagArray"   (click)="addReason(reason)"
+               [ngClass] = "{frame: reasonsActiveTag.includes(reason)}"
+        >{{reason}} </label>
+      </div>
+
+      <input type="text"
+             formControlName="reasons"
+             [ngClass] = "{
+              valid: !myform.get('reasons')?.invalid && myform.get('reasons')?.touched,
+              invalid: myform.get('reasons')?.invalid && myform.get('reasons')?.touched}">
+    </div>
+
+
+
+    <div class="form-photo" formGroupName ="photo">
+      <button (click)=" addPhoto()" >
+        Добавить фотографию
+      </button>
+
+      <div
+        *ngFor="let control of getControls(); let idx = index"
+      >
+        <label (click)="getPhotoNameControls(idx)">Фотография №{{idx+1}}</label>
+        <input type="text" [formControlName] = "idx"
+               [value]="productService.product.image[idx]"
+               [ngClass] = "{
+              valid: !InvalidPhotoControls(idx),
+              invalid: InvalidPhotoControls(idx)}">
+
+        <div *ngIf = "myform.get('photo')?.invalid && myform?.get('photo')?.touched">
+          <!--        <div *ngIf = "myform.get('photo')?.get('{{idx}}')?.touched ">-->
+          <small *ngIf = "getPhotoNameControls(idx)"
+          >Введите адрес фотографии</small>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="form-TA">
+      <div class="labelTA">
+        <label (click)=" hideStructure()">Состав</label>
+      </div>
+      <textarea formControlName="structure"
+                [value]="productService.product.structure"
+                [ngClass]="{ hide: hideS,
+          valid: !myform.get('structure')?.invalid && myform.get('structure')?.touched,
+          invalid: myform.get('structure')?.invalid && myform.get('structure')?.touched}" ></textarea>
+      <div *ngIf = "myform.get('structure')?.invalid && myform?.get('structure')?.touched">
+        <small>Введите состав товара</small>
+      </div>
+    </div>
+
+
+
+    <div class="form-TA">
+      <div class="labelTA">
+        <label (click)=" hideDescription()">Описание</label>
+      </div>
+      <textarea   formControlName="description"
+                  [value]="productService.product.description"
+                  [ngClass]="{ hide: hideD,
+          valid: !myform.get('description')?.invalid && myform.get('description')?.touched,
+          invalid: myform.get('description')?.invalid && myform.get('description')?.touched
+      }" ></textarea>
+      <div *ngIf = "myform.get('description')?.invalid && myform?.get('description')?.touched">
+        <small>Введите описание товара</small>
+      </div>
+    </div>
+
+
+
+
+    <div class="submitButton">
+      <button type="submit" [disabled]="myform.invalid">
+        Отправить
+      </button>
+    </div>
+
+  </form>
+
+</div>
+
+

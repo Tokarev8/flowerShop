@@ -1,9 +1,14 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { addElement, deleteElement, deleteElements, showElements } from "../store/actions/bouquets.actions";
-import { bouquetsArraySelector } from "../store/selectors/bouquet.selector";
-import { ProductInterface } from "../interfaces/product-state";
-import { originalArrayBouquets } from "../test/array-product/bouquets";
+import { loadingBouquets } from "../store/actions/bouquets.actions";
+import { loadingBasket } from "../store/actions/basket.actions";
+import { loadingComposistions } from "../store/actions/compositions.actions";
+import { initializationFavoritesArray } from "../store/actions/favorites.actions";
+import { loadingFlowers } from "../store/actions/flowers.actions";
+import { loadingGifts } from "../store/actions/gifts.actions";
+import { loadingPopular } from "../store/actions/popular.actions";
+import { loadingPromotions } from "../store/actions/promotions.actions";
+import { loadingUsers } from "../store/actions/users.actions";
 
 @Component({
   selector: "app-root",
@@ -14,34 +19,34 @@ import { originalArrayBouquets } from "../test/array-product/bouquets";
 
 export class AppComponent {
 
- public product: ProductInterface = originalArrayBouquets[0];
-
- public originalArray: ProductInterface[] = [];
- public copyOfArray: ProductInterface[] = [];
-
- // создаем подпищикша на состояния хранилища типа обсерабл  bouquetsArray$
- bouquetsArray$ = this.store.select(bouquetsArraySelector);
 
 
-  constructor(private store: Store) {
 
 
+
+
+
+  constructor(private store: Store, private ref: ChangeDetectorRef) {
+
+  // загружаем данные с бека
+    this.store.dispatch(loadingBouquets());
+    this.store.dispatch(initializationFavoritesArray());
+    this.store.dispatch(loadingFlowers());
+    this.store.dispatch(loadingComposistions());
+    this.store.dispatch(loadingGifts());
+    this.store.dispatch(loadingPromotions());
+    this.store.dispatch(loadingPopular());
+    this.store.dispatch(loadingBasket());
+    this.store.dispatch(loadingUsers());
+
+
+    setInterval(() => {
+      this.ref.markForCheck();
+    }, 100);
 
 }
 
 
-  public add(): void {
-    this.store.dispatch(addElement());
-  }
-  public delete(): void {
-    this.store.dispatch(deleteElement());
-  }
-  public deleteAll(): void {
-    this.store.dispatch(deleteElements());
-  }
-  public show(): void {
-    this.store.dispatch(showElements());
-  }
 
 
 }

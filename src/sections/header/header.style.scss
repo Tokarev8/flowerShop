@@ -1,0 +1,46 @@
+
+
+@media (max-width: 1200px) {
+  .headerBlock_topMenu{
+    ul{
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+}
+
+
+@media (max-width: 700px) {
+  //.headerBlock_title{
+  //  max-width: 100%;
+  //}
+.headerBlock_contacts{
+  display: none;
+}
+
+  .headerBlock_topMenu{
+    display: grid;
+
+    justify-content: end;
+    align-items: center;
+
+    ul{
+     display: none;
+    }
+
+    .buttonBurger{
+      margin-right: auto;
+      display: block;
+
+
+      button{
+        width: 40px;
+        height: 40px;
+        background-color: #f368d7;
+        border: none;
+        background-image: url("../../assets/icon/burger.png");
+      }
+    }
+
+  }
+}

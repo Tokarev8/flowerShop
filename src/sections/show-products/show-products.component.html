@@ -1,0 +1,45 @@
+
+
+
+<div class="main_block">
+
+
+
+
+
+
+
+
+
+  <div class="arrayProducts">
+
+
+      <div class="arrayProducts_elementBox" *ngFor = "let element of  array">
+
+          <a [routerLink]="['/product', element._id]" (click)="setProduct(element)">
+            <img src="{{element.image[0]}}" alt="" >
+          </a>
+
+        <div class="header">
+            <p>{{element.name}}</p>
+            <p>{{element.price}} ₽</p>
+
+            <!-- <button class="favorite"></button> -->
+        </div>
+
+        <div class="button">
+          <button routerLink="/basket" class="buy" (click)="addElementBasket(element)">Купить</button>
+        </div>
+
+
+
+        <img *ngIf="element.favorite" src="../../assets/icon/heart-red.png" alt="" class="favorite" (click)="addFavorite(element)">
+        <img *ngIf="!element.favorite" src="../../assets/icon/heart-white2.png" alt="" class="favorite" (click)="addFavorite(element)">
+
+
+      </div>
+  </div>
+
+</div>
+
+

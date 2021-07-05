@@ -1,9 +1,9 @@
-import { Action, createAction, props} from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
 import { ProductInterface } from "../../interfaces/product-state";
-import { BouquetsState } from "../states/state-categories/bouquets-state";
 
 
-export enum stateActionsType {
+
+export enum bouquetsActionsType {
   addElementBouquets = "[BOUQUETS] add element for array bouquets",
   addElementsBouquets = "[BOUQUETS] add elements for array bouquets",
 
@@ -13,24 +13,41 @@ export enum stateActionsType {
   showElementBouquets = "[BOUQUETS] show element for array bouquets",
   showElementsBouquets = "[BOUQUETS] show elements for array bouquets",
 
-  initialBouquets = "[BOUQUETS] initial for array bouquets",
-  initialSuccessBouquets = "[BOUQUETS] initial success for array bouquets",
+  LoadingBouquets = "[BOUQUETS] Loading array bouquets from the server",
+  LoadingSuccessBouquets = "[BOUQUETS] Loading  array bouquets success from the server",
+  // initialErrorBouquets = "[BOUQUETS] initial error for array bouquets",
+
+  changeFavorites = "[BOUQUETS] change parameter favorites, for element array bouquets",
+
+  changeBouquets = "[BOUQUETS] change  element for array bouquets",
+
 }
 
-export const addElement = createAction(`${stateActionsType.addElementBouquets}`);
+export const addElement = createAction(`${bouquetsActionsType.addElementBouquets}`);
 
 
 
-export const addElements = createAction(`${stateActionsType.addElementsBouquets}`,
+export const addElements = createAction(`${bouquetsActionsType.addElementsBouquets}`,
   props<{array: ProductInterface[] }>() );
 
-export const deleteElement = createAction(`${stateActionsType.deleteElementBouquets}`);
-export const deleteElements = createAction(`${stateActionsType.deleteElementsBouquets}`);
+export const deleteElement = createAction(`${bouquetsActionsType.deleteElementBouquets}`);
+export const deleteElements = createAction(`${bouquetsActionsType.deleteElementsBouquets}`);
 
-export const showElement = createAction(`${stateActionsType.showElementBouquets}`);
-export const showElements = createAction(`${stateActionsType.showElementsBouquets}`);
+export const showElement = createAction(`${bouquetsActionsType.showElementBouquets}`);
+export const showElements = createAction(`${bouquetsActionsType.showElementsBouquets}`);
 
-export const initialBouquets = createAction(`${stateActionsType.initialBouquets}`);
-export const initialSuccess = createAction(`${stateActionsType.initialSuccessBouquets}`, props<{array: ProductInterface[] }>() );
+export const loadingBouquets = createAction(`${bouquetsActionsType.LoadingBouquets}`);
+
+export const initialSuccess = createAction(`${bouquetsActionsType.LoadingSuccessBouquets}`, props<{array: ProductInterface[] }>() );
+
+// изменяет параметр favorite
+export const bouquetsChangeFavorites = createAction(`${bouquetsActionsType.changeFavorites}`, props<{element: ProductInterface}>() );
+
+export const bouquetsChangeElement = createAction(`${bouquetsActionsType.changeBouquets}`, props<{newElement: ProductInterface}>() );
+
+
+
+
+
 
 

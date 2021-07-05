@@ -1,0 +1,79 @@
+
+
+
+<button (click)="op()">OPA</button>
+
+<div class="header">
+
+  <div class="header_orderTitle">
+    <p>Номер: {{order?.number}}</p>
+    <p>Дата: {{order?.time | date}}</p>
+    <p>Цена: {{order?.total}}</p>
+  </div>
+
+
+  <div class="header_StatusBox">
+
+    <div
+      [ngClass] = "{
+      enableActive: orderService.order?.status === 0,
+      disabled: orderService.order?.status !== 0
+      }"
+      (click)="orderService.setStatusOrder(0)"
+
+    >
+      <p>Активный</p>
+    </div>
+
+    <div
+      [ngClass] = "{
+         enableCompleted: orderService.order?.status === 1,
+          disabled: orderService.order?.status !== 1
+      }"
+      (click)="orderService.setStatusOrder(1)"
+    >
+      <p>Выполненый</p>
+    </div>
+
+    <div
+      [ngClass] = "{
+         enableCanceled: orderService.order?.status === 2,
+          disabled: orderService.order?.status !== 2
+      }"
+      (click)="orderService.setStatusOrder(2)"
+    >
+      <p>Отменить</p>
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<h2>Список товаров</h2>
+
+  <div *ngFor="let element of productArray; let idx = index" class="productArray">
+    <div class="productArray_ImageBox">
+      <img src="{{element.image[0]}}" alt="">
+    </div>
+    <div>
+      <p>{{element.name}}</p>
+    </div>
+    <div>
+      <p>{{quantity[idx]}}шт</p>
+    </div>
+
+
+
+
+  </div>
+
+

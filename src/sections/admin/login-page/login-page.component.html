@@ -1,0 +1,57 @@
+
+
+
+<form [formGroup]="form"  (ngSubmit) = "submit()">
+
+
+
+  <div class="FormControl">
+    <label for="email"> Email </label>
+    <input id="email" type="email" formControlName="email" placeholder="Email">
+
+    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched ">
+
+      <small *ngIf="form.get('email')?.errors?.required">
+        Поле email не может быть пустым </small>
+
+      <small *ngIf="form.get('email')?.errors?.email">
+        Поле email не корректно </small>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="FormControl">
+    <label for="password"> Password </label>
+    <input id="password" type="password" formControlName="password" placeholder="Password">
+
+    <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched ">
+
+      <small *ngIf="form.get('password')?.errors?.required">
+        Поле password не может быть пустым </small>
+
+      <small *ngIf="form.get('password')?.errors?.minlength">
+        Поле password должно быть больше 6 символов </small>
+
+    </div>
+
+  </div>
+
+  <div class="buttonSubj">
+    <button type="submit" [disabled]="form.invalid || submitted">
+      Войти</button>
+  </div>
+
+
+</form>
+
+<div *ngIf="userNotFound" class="NotFound">
+  <p>Такого пользователя не существует</p>
+</div>
+
+<div class="registration">
+  <p>Еще нет аккаунта? <a routerLink="/admin/registration" >Регистрация</a></p>
+</div>
+

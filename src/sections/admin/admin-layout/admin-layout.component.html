@@ -1,0 +1,31 @@
+<nav class="navbarAdmin">
+  <h1>
+    <a routerLink="/">Admin menu</a>
+  </h1>
+
+  <ul>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/admin','registration']">Регистрация</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/admin','dashboard']">Панель</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/admin','add']">Добавить товар</a>
+    </li>
+
+    <li routerLinkActive="active">
+      <a [routerLink]="['/admin','orders']">Заказы</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/admin','']">Выйти</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/admin','login']">Войти</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

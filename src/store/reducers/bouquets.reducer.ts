@@ -1,33 +1,18 @@
 import { createReducer, on } from "@ngrx/store";
+import { ProductInterface } from "../../interfaces/product-state";
 import {
   addElement,
-  addElements,
+  addElements, bouquetsChangeElement,
+  bouquetsChangeFavorites,
   deleteElement,
-  deleteElements,
-  initialBouquets, initialSuccess,
-  showElements
+  deleteElements, initialSuccess,
+  loadingBouquets,
+  showElements,
 } from "../actions/bouquets.actions";
-import { BouquetsState, initialBouquetsState } from "../states/state-categories/bouquets-state";
-import { ProductInterface } from "../../interfaces/product-state";
+import { initialBouquetsState } from "../states/state-categories/bouquets-state";
 
 
 
-const x: ProductInterface = {
-  name: "BUKET",
-  image: [],
-  price: 100500,
-  structure: "",
-  description: "",
-  id: "",
-  categories: "",
-  flowers: [],
-  reason: [],
-  popularity: 0,
-  favorite: false,
-};
-
-const y: ProductInterface[] = [];
-y.push(x);
 
 
 
@@ -35,29 +20,18 @@ export const bouquetsReducer = createReducer(
   initialBouquetsState,
 
   on(addElement, state => {
-    let array: ProductInterface[] = [];
-    if (state.array === undefined) {
-      array.push(x);
-    } else {
-      array = state.array.map( (ele) => ele);
-    array.push(x);
-    }
-    return {
-      ...state,
-      array: array
-    };
+
+
+    return {...state};
     }),
   on(addElements, (state, action) => {
     return {...state, array: action.array};
   }),
 
   on(deleteElement, state => {
-    const array = state.array.filter( (ele) => ele !== state.array[state.array.length - 1]);
-    array.push(x);
+
     return {
-      ...state,
-      array: array
-    };
+      ...state,};
 
   }),
 
@@ -72,7 +46,7 @@ export const bouquetsReducer = createReducer(
   on(showElements, state => {
     return {...state};
   }),
-  on(initialBouquets, state =>  {
+  on(loadingBouquets, state =>  {
     return {...state};
   }),
 
@@ -81,18 +55,41 @@ export const bouquetsReducer = createReducer(
   }),
 
 
+  on(bouquetsChangeFavorites, (state, action) =>  {
+
+    const modifiedArray: ProductInterface[] = [];
+
+      state.array.forEach((elementArray) => {
+
+      if (elementArray === action.element) {
+
+        const objCopy: ProductInterface = Object.assign({}, elementArray);
+        objCopy.favorite = !objCopy.favorite;
+        modifiedArray.push(objCopy);
+      } else { modifiedArray.push(elementArray); }
+    });
+
+    return {...state, array: modifiedArray};
+  }),
+
+  on(bouquetsChangeElement, (state, action) =>  {
+    const modifiedArray: ProductInterface[] = [];
+
+    state.array.forEach((elementArray) => {
+
+      if (elementArray._id === action.newElement._id) {
+
+        const newObj: ProductInterface = Object.assign({}, action.newElement);
+        modifiedArray.push(newObj);
+      } else { modifiedArray.push(elementArray); }
+    });
+    return {...state, array: modifiedArray};
+  }),
+
 
 
 );
 
-/*
-function xop (arrayOrigin: ProductInterface[] ): ProductInterface[] {
 
-  const arrayDublicat: ProductInterface[] = [];
 
-  arrayOrigin.forEach((item, index, array) => {
-    arrayDublicat.push(item);
-  });
 
-  return arrayDublicat;
-}*/

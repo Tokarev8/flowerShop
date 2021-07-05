@@ -1,48 +1,117 @@
 
 
 
-  <div class="productBox">
+<div class="ProductBox">
 
 
+  <div class="productBox_imgBox">
 
-    <div class="productBox_imgBox">
-
-      <div class="productBox_listImg">
-        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="50%">
-        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="50%">
-        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="50%">
-        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="50%">
-      </div>
-
-      <div class="productBox_mainImg">
-        <img src="https://vladimir.rus-buket.ru/files/3150-dushistoe-utro-9517.jpg" alt="" width="100%">
-      </div>
+    <div class="productBox_listImg">
+        <div *ngFor="let img of productService.product.image" class="listImg">
+            <img src="{{img}} "alt=""  (click)="changeMainImg(img)">
+        </div>
     </div>
 
 
-
-    <div class="productBox_structure">
-
-      <h2>{{thisProduct.name}}</h2>
-      <h2>{{thisProduct.price}} <span>₽</span></h2>
-      <div class="productBox_buttonBox">
-        <button class="productBox_buttonBuy" (click)="buyProduct()">Купить</button>
-        <button (click)="addFavorites ()"></button>
-      </div>
-      <div>
-      <h4>Состав</h4>
-        <p>{{thisProduct.structure}}</p>
-      </div>
+    <div class="productBox_mainImg">
+      <img src="{{productService.mainImage}}" alt="">
     </div>
-
-
-
-
-    <div class="productBox_description">
-      <h4>Описание</h4>
-      <p class="productBox_direction">{{thisProduct.description}}</p>
-    </div>
-
 
   </div>
+
+
+
+
+  <div class="productBox_structure">
+
+    <div class="productBox_NamePrice">
+      <div>
+        <p>{{ productService.product.name}}</p>
+      </div>
+      <div>
+        <p>{{ productService.product.price}} <span>₽</span></p>
+      </div>
+    </div>
+
+
+    <div class="productBox_buttonBox">
+      <div class="buttonFlex">
+
+        <button class="productBox_buttonBuy" (click)="buyProduct()">Купить</button>
+
+        <div class="favoriteButton">
+          <button (click)="addFavorites ()">
+            <img *ngIf="productService.product.favorite" src="../../assets/icon/heart-red.png" alt="" class="favorite" (click)="addFavorite(productService.product)">
+            <img *ngIf="!productService.product.favorite" src="../../assets/icon/heart-white2.png" alt="" class="favorite" (click)="addFavorite(productService.product)">
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="struct">
+      <div>
+        <p>Состав</p>
+        <p>{{ productService.product.structure}}</p>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<!--<button>-->
+<!--  <a routerLink="admin/product/:id/edit" >Редактировать</a>-->
+<!--</button>-->
+
+<button>
+  <a routerLink ="/admin/edit" >Редактировать</a>
+</button>
+
+
+
+<div class="productBox_description">
+  <p>Описание</p>
+  <p class="productBox_direction">{{ productService.product.description}}</p>
+</div>
+
+
+
+
+
+
+
+
+<!--  <div class="productBox">-->
+
+
+
+<!--    <div class="productBox_imgBox">-->
+
+<!--      <div class="productBox_listImg">-->
+
+<!--        <div *ngFor="let img of productService.product.image" class="listImg">-->
+<!--          <img src="{{img}} "alt="" width="60%" (click)="changeMainImg(img)">-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="productBox_mainImg">-->
+<!--        <img src="{{productService.mainImage}}" alt="" width="100%">-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+
+
+
+
+
+
+
+
+<!--  </div>-->
 

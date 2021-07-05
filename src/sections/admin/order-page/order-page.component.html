@@ -1,0 +1,205 @@
+
+
+
+
+
+<div class="OrdersBlock">
+
+  <h2>Заказы</h2>
+
+
+
+
+
+
+
+
+  <div class="sortBox">
+
+
+
+      <div class="sortBox_selectSort">
+        <label for="sortSel">Сортировать</label>
+        <select name="" id="sortSel" (input)="orderService.setSort($event)">
+          <option [value]="orderService.arraySort[0]">{{orderService.arraySort[0]}}</option>
+          <option [value]="orderService.arraySort[1]">{{orderService.arraySort[1]}}</option>
+          <option [value]="orderService.arraySort[2]">{{orderService.arraySort[2]}}</option>
+        </select>
+      </div>
+
+
+      <div class="sortBox_date"
+        [ngClass] ="{
+        hide: !(orderService.choiceSort === orderService.arraySort[1])
+      }">
+        <div>
+          <label>От</label>
+          <input type="date">
+        </div>
+
+        <div>
+          <label>До</label>
+          <input type="date">
+        </div>
+
+      </div>
+
+
+
+      <div class="sortBox_numberOrder"
+           [ngClass] ="{
+        hide: !(orderService.choiceSort === orderService.arraySort[0])
+      }">
+        <div>
+          <label >Номер</label>
+          <input type="number" min="0">
+        </div>
+      </div>
+
+
+
+
+
+      <div class="sortBox_condition"
+           [ngClass] ="{
+        hide: !(orderService.choiceSort === orderService.arraySort[2])
+      }">
+
+        <div>
+          <label>Активные</label>
+          <input type="checkbox">
+        </div>
+
+        <div>
+          <label>Выполненные</label>
+          <input type="checkbox">
+        </div>
+
+        <div>
+          <label from="CanceledOrders">Отменнёные</label>
+          <input type="checkbox" id="CanceledOrders">
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="OrdersBlock_order"
+
+       *ngFor = "let element of orderService.partArrayOrders"
+       [ngClass] = "{
+        canceled: element.status === 2,
+        completed: element.status === 1}"
+       (click)="orderService.goToOrder(element)"
+
+  >
+
+    <div>
+      <p>Заказ №{{element.number}}</p>
+    </div>
+
+    <div>
+      <p>Дата: {{element.time | date}}</p>
+    </div>
+
+    <div>
+      <p>Цена: {{element.total}}</p>
+    </div>
+
+  </div>
+
+  <div class="pageNumber">
+
+    <p (click)="orderService.decrease()">&#5176;</p>
+    <p (click)="orderService.start()">1</p>
+    <div>
+      <input type="number" [value]="orderService.numberOfPages" maxlength="3" (input)="orderService.changeNumber($event)">
+    </div>
+
+    <p (click)="orderService.end()">{{orderService.maxLengthOrdersArray}}</p>
+    <p (click)="orderService.increase()">&#5171;</p>
+
+  </div>
+
+
+ </div>
+
+
+
+<button (click)="op()">POPS</button>
+
+<p>{{orderService.numberOfPages}}</p>
+
+
+
+
+
+
+
+
+<!--<div class="OrdersBlock">-->
+
+
+<!--<table class="OrdersBlock_table">-->
+<!--  <caption>Заказы</caption>-->
+
+<!--  <th>Номер</th>-->
+<!--  <th>Сумма</th>-->
+<!--  <th>Дата</th>-->
+
+
+
+<!--  <tr  class="basketProduct" *ngFor = "let element of orderService.ordersArray">-->
+<!--    <td>{{element.number}}</td>-->
+<!--    <td>{{element.total}}</td>-->
+<!--    <td>{{element.time | date}}</td>-->
+<!--    <td>  <button>...</button></td>-->
+<!--  </tr>-->
+
+<!--</table>-->
+
+
+<!--<button (click)="op()">POPS</button>-->
+
+
+
+
+
+<!--</div>-->
+
+
+
+
+
+
+
+
+<!--<div  class="basketProduct" *ngFor = "let element of orderService.orders$ | async" >-->
+
+<!--  <div>-->
+<!--    <p> {{element.number}}</p>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <p>{{element.time| date}}</p>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <p>{{element.total}}</p>-->
+<!--  </div>-->
+
+
+<!--</div>-->

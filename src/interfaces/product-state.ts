@@ -6,12 +6,13 @@ export interface ProductInterface {
   price: number;
   structure: string;
   description: string;
-  id: string;
+  _id: string;
   categories: string;
   flowers: string[];
   reason: string[];  // теги для поиска
   popularity: number; // рейтинг популярности
   favorite: boolean; // индикатор понравившегося товара
+  discount: number;  // скидка на товар в %
 }
 
 export const initialStateProduct: ProductInterface = {
@@ -20,11 +21,25 @@ export const initialStateProduct: ProductInterface = {
   price: 0,
   structure: "",
   description: "",
-  id: "",
+  _id: "",
   categories: "",
   flowers: [],
   reason: [],
   popularity: 0,
   favorite: false,
+  discount: 0,
 };
 
+export interface postProductInterface {
+  name: string;
+  image: string[];
+  price: number;
+  structure: string;
+  description: string;
+  categories: string;
+  flowers: string[];
+  reason: string[];  // теги для поиска
+  popularity: number; // рейтинг популярности
+  favorite: boolean; // индикатор понравившегося товара
+  discount: number;  // скидка на товар в %
+}

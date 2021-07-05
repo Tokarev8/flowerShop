@@ -1,7 +1,7 @@
 
 
 .Padding{
-  padding-top: 200px;
+  padding-top: 150px;
 }
 
 
@@ -9,37 +9,89 @@
   width: 80%;
   margin-right: auto;
   margin-left: auto;
-
-  height: 300px;
-  //border: 1px solid black;
-  display: grid;
-  grid-template: 1fr / 2fr 1fr 1fr 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-  font-size: 30px;
-
-  border-bottom: 1px solid gainsboro;
-}
-
-
-
-
-
-.basketTable_counter{
+  height: 250px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  font-size: 30px;
+  border-bottom: 1px solid gainsboro;
 
-  button{
-    margin: 0 10px 0 10px;
-    height:40px;
-    font-size: 30px;
-    border: none;
-    background-color: white;
+
+
+  .basketProduct_imageBlock{
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    img{
+      display: block;
+      //vertical-align: top;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
   }
+
+ .basketProduct_nameProduct{
+   width: 40%;
+   display: grid;
+   justify-items: center;
+   align-items: center;
+   p{
+     font-family: Montserrat Alternates Regular;
+   }
+ }
+
+
+  .basketProduct_deleteButton{
+    width: 4%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    button{
+      margin-top: auto;
+      margin-bottom: auto;
+      background-color: white;
+      width: 32px;
+      height: 47px;
+      border: none;
+      background-image: url("../../assets/icon/bin.png");
+      background-repeat: no-repeat;
+    }
+  }
+
+
+  .basketTable_counter{
+    width: 18%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    button{
+      margin: 0 10px 0 10px;
+      height:40px;
+      font-size: 30px;
+      border: none;
+      background-color: white;
+    }
+  }
+
+  .basketTable_price{
+    width: 18%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
 }
 
+
+
 .placeAnOrder{
+  // border: 1px solid black;
+  //margin: 10px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -53,11 +105,54 @@
   }
   button{
     height: 60px;
-    width: 120px;
+    width: 240px;
     background-color: white;
     border-color: red;
     font-size: 20px;
-    padding:15px
+    padding:15px;
+    transition-duration: 0.5s;
   }
 
+  button:hover{
+
+    background-color: #e10c73;
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@font-face {
+
+  font-family: "Montserrat Alternates Regular";
+
+  src: url("../../assets/font/Montserrat Alternates Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }

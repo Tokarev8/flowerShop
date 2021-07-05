@@ -14,23 +14,58 @@
   background-color: white;
   position: fixed;
   z-index: 1;
-margin-bottom: 200px;
+  margin-bottom: 200px;
   display: grid;
-  flex-direction: 1fr 1fr/1fr;
+  //flex-direction: 1fr 1fr/1fr;
 
 
 
 }
 
 .headerBlock_title{
-  height: 80px;
+
+  height: 70px;
   font-family: Arial;
   font-size: 18px;
   text-align: center;
+  display: flex;
+  //justify-content: center;
+  //justify-content: space-between;
+  align-items: center;
+
+
+.title{
+  //flex-basis: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  //border: 1px solid black;
+  padding-left: 12%;
+  //justify-content: flex-end;
+}
+.headerBlock_contacts{
+
+  box-sizing: border-box;
+
+  p{
+
+    padding: 0;
+    margin: 0;
+  }
+  .headerBlock_socialNetworks{
 
 
 
+    display: flex;
 
+    a{
+      margin-right: 3px;
+      margin-top: 3px;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+}
 
 
 
@@ -39,26 +74,101 @@ margin-bottom: 200px;
 
 
 .headerBlock_topMenu{
+  display:flex;
+  justify-content: center;
   background-color:  #f368d7;
-  height: 60px;
+  height: 40px;
+
   font-family: Arial;
   font-size: 18px;
 
+  .buttonBurger{
+    display: none;
+  }
+
 ul{
+
   display: flex;
-  flex-direction: row;
-  justify-content: center;
 
-}
-  ul li{
-    list-style-type: none;
-    display: inline-block;
-    margin-right: 3%;
+  width: 70%;
+  justify-content: space-evenly;
+  align-items: center;
 
+  li{
+     list-style-type: none;
     a{
       text-decoration: none;
     }
 
   }
+
 }
 
+}
+
+
+
+.active{
+  color:#940577;
+}
+
+
+
+
+
+
+
+
+
+///////////////
+
+
+
+
+.topMenuBurger{
+  display: flex;/* технология флексбокс */
+  align-items: center; /* выравнивание по центру */
+  justify-content: center; /* выравнивание по центру */
+  background-color: #e38ec9;
+  width: 100vw; /* ширина блока меню */
+  z-index: 10;/* слой ниже кнопки */
+  position: fixed; /* блок зафиксирован */
+  left: -100vw;/* скрывание блока с меню */
+  top: 0; /* позиция от левого верха */
+  transition: all 0.5s;/* плавное выдвижение блока */
+  opacity: .95;/* блок имеет прозрачность */
+
+  ul {
+    list-style: none; /* убрать маркеры */
+    padding: 0;
+    margin-top: 60px;
+    height: 100vh; /* блок занимает всю высоту браузера */
+  }
+  a{
+    display: block; /* из строчного в блочный */
+    color: #6f2d35;
+    line-height: 50px;
+    text-decoration: none;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    transition: all 0.3s;
+    width: 100vw; /* блоки с ссылками на всю ширину */
+    display: flex;
+    justify-content: center; /* выравнивание по центру */
+  }
+  /* Эффект наведения мыши на ссылки */
+  a:hover{
+    background-color: #efc5fa;
+    width: 100vw;
+  }
+
+}
+
+.activeBurg{
+  left: 0;
+}
+.activeBurger{
+  background-image: url("../../assets/icon/burger2.png");
+}
