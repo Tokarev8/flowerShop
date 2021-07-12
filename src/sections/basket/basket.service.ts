@@ -6,7 +6,7 @@ import { Store } from "@ngrx/store";
 
 import { Categories } from "../../interfaces/categories";
 import { LoadBackService } from "../../service/loadback.service";
-import { addOrder } from "../../store/actions/orders.action";
+import { addOrder, loadingOrders } from "../../store/actions/orders.action";
 import { ClearBasketArray, deleteBasketElement, setUser } from "../../store/actions/user.actions";
 import { bouquetsArraySelector } from "../../store/selectors/bouquet.selector";
 import { compositionsArraySelector } from "../../store/selectors/compositions.selector";
@@ -28,7 +28,7 @@ export class BasketService {
   private arrayFromOrder: ProductBasket[] = [];
 
   private orders$: Observable<OrderInterface[]> = this.store.select(ordersArraySelector);
-  private orderLengths: number = 0 ;
+  private orderLength: number = 0 ;
 
   private user$: Observable<UsersInterface> = this.store.select(userSelector);
   private user: UsersInterface = initializtionUser;
@@ -38,7 +38,8 @@ export class BasketService {
 
   constructor(public store: Store, public loadBackService: LoadBackService) {
 
-    this.orders$.subscribe( array => this.orderLengths = array.length);
+
+    this.orders$.subscribe( array => this.orderLength = array.length);
 
     this.user$.subscribe(
       user => {this.user =  user;
@@ -88,7 +89,7 @@ export class BasketService {
 
    // tslint:disable-next-line:no-any
    const order: any = {
-     number: this.orderLengths + 1,
+     number: this.orderLength + 1,
      arrayProduct: this.arrayFromOrder,
      time: Date.now(),
      total: this.sumPrice,
@@ -107,6 +108,7 @@ export class BasketService {
    if (this.user.email !== "") {
      this.loadBackService.putElement(`http://localhost:3000/user/${this.user._id}`, newUser);
    }
+
 
  }
 
