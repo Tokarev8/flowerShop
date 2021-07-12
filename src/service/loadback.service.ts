@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { postProductInterface, ProductInterface } from "../interfaces/product-state";
+import { PostProductInterface, ProductInterface } from "../interfaces/product-state";
 import { BasketInterface } from "../store/states/state-categories/basket-state";
 import { OrderInterface } from "../store/states/state-categories/orders-state";
 import { PostUser, UsersInterface } from "../store/states/state-categories/user-state";
@@ -33,7 +33,7 @@ export class LoadBackService {
 
   postElement(url: string,
               element: ProductInterface
-                | postProductInterface
+                | PostProductInterface
                 | BasketInterface
                 | PostUser
                 | OrderInterface): void {
@@ -48,20 +48,10 @@ export class LoadBackService {
 
   // tslint:disable-next-line:no-any
   putElement (url: string , element: any): void {
-    this.http.put<ProductInterface>(url, {
-      name: element.name,
-      image: element.image,
-      price: element.price,
-      structure: element.string,
-      description: element.description,
-      categories: element.categories,
-      flowers: element.flowers,
-      reason: element.reason,
-      popularity: element.popularity,
-      favorite: element.favorite,
-      discount: element.discount,
-    }).subscribe();
+    // tslint:disable-next-line:no-any
+    this.http.put<any>(url, element).subscribe();
   }
+
 
   ChangeFavoritParamet (url: string , element: ProductInterface): void {
     this.http.put<ProductInterface>(url, { favorite: !element.favorite}).subscribe();

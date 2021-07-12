@@ -7,19 +7,16 @@ import { AddProductComponent } from "../add-product/add-product.component";
 import { AdminLayoutComponent } from "../admin-layout/admin-layout.component";
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { EditProductComponent } from "../edit-product/edit-product.component";
-import { AuthService } from "../login-page/auth.service";
-import { LoginPageComponent } from "../login-page/login-page.component";
+import { EditService } from "../edit-product/edit.service";
 import { OrderPageComponent } from "../order-page/order-page.component";
-import {RegistrationComponent} from "../registration/registration.component";
-import {EditService} from "../edit-product/edit.service";
-import {OrderComponent} from "../order-page/order/order.component";
-import {OrderService} from "../order-page/order-page.service";
+import { OrderService } from "../order-page/order-page.service";
+import { OrderComponent } from "../order-page/order/order.component";
+import { RegistrationComponent } from "../registration/registration.component";
 
 
 @NgModule({
   declarations: [
     AdminLayoutComponent,
-    LoginPageComponent,
     AddProductComponent,
     DashboardComponent,
     EditProductComponent,
@@ -34,24 +31,18 @@ import {OrderService} from "../order-page/order-page.service";
     RouterModule.forChild([
       {
         path: "", component: AdminLayoutComponent, children: [
-          {path: "", redirectTo: "/admin/login", pathMatch: "full" },
-          {path: "login", component: LoginPageComponent},
+          {path: "", redirectTo: "/admin", pathMatch: "full" },
           {path: "dashboard", component: DashboardComponent},
           {path: "add", component: AddProductComponent},
-
-         // {path: "product/:id/edit", component: EditProductComponent},
           {path: "edit", component: EditProductComponent},
-          {path: "registration", component: RegistrationComponent},
           {path: "orders", component: OrderPageComponent, },
           {path: "orders/:number", component: OrderComponent},
-
-
         ]
       },
     ]),
   ],
   exports: [RouterModule],
-  providers: [AuthService, LoadBackService, EditService, OrderService],
+  providers: [LoadBackService, EditService, OrderService],
 })
 export class AdminModule {
 

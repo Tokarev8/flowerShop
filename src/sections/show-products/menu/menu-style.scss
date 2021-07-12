@@ -1,0 +1,54 @@
+
+
+
+
+@media (max-width: 1400px) {
+.menu{
+  width: 100%;
+}
+}
+
+
+
+@media (max-width: 990px) {
+  .menu {
+    .menu_price:hover{
+      ul{
+        width: 265%;
+        display: block;
+        border-radius: 6px;
+      }
+    }
+
+
+    .menu_flowers:hover {
+      ul {
+        border-radius: 6px;
+        width: 221%;
+        display: block;
+        box-sizing: border-box;
+      }
+    }
+
+    .menu_reason:hover{
+      ul{
+        border-radius: 6px;
+        width: 400%;
+        display: block;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 800px) {
+  .menu{
+    display: none;
+  }
+
+  .miniMenu{
+    display: flex;
+  }
+}

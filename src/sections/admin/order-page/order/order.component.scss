@@ -1,13 +1,9 @@
 
 
-
 .productArray{
   width: 70%;
   margin-right: auto;
   margin-left: auto;
-
-  //display: flex;
-  //  //flex-direction: row;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   border-bottom: 1px solid grey;
@@ -15,37 +11,26 @@
   padding-bottom: 10px;
   justify-content: space-around;
 
-
-
-
-
   .productArray_ImageBox{
-    //width: 150px;
     height: 150px;
     display: grid;
     align-content: center;
     justify-content: center;
     overflow: hidden;
-    //border: 1px solid black;
 
     img{
       display: block;
-      //border: 1px solid black;
-      //width: 50%;
       object-fit: cover;
-      //width: 50%;
       width: 150px;
     }
   }
 
   :nth-child(2){
-    //margin-left: 20%;
     display: grid;
     align-content: center;
     justify-content: center;
   }
   :nth-child(3){
-    //margin-left: 20%;
     display: grid;
     align-content: center;
     justify-content: center;
@@ -60,17 +45,14 @@
 
 .header{
   width: 70%;
-  border: 1px solid black;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 60px;
-
 }
 
 .header_orderTitle{
   display: flex;
   justify-content: space-around;
-
 }
 
 
@@ -79,46 +61,33 @@
 
 .header_StatusBox{
   display: flex;
-
-  //flex-direction: column;
-  //margin-left: 20%;
   border: 1px solid black;
   width: 100%;
-
 
   div{
     margin: 0;
     padding: 0;
     width: 100%;
     box-sizing: border-box;
-    // border: 1px solid black;
     display: grid;
     align-content: center;
     justify-content: center;
     transition: 0.3s;
   }
-
-
 }
 h2{
   text-align: center;
 }
 
 
-
-
-
-
 .disabled{
   background-color: #e7e7e7;
   border: 1px solid black;
-
 }
 
 .enableCompleted{
   background-color: white;
   box-shadow:  0 0 10px #4efd51;
-  //box-shadow:  0 0 3px green;
   border: 3px solid #4efd51;
 }
 
@@ -130,7 +99,6 @@ h2{
 }
 
 .enableCanceled{
-
   background-color: white;
   box-shadow:  0 0 10px red;
   border: 3px solid red;

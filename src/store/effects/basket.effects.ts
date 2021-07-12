@@ -12,7 +12,6 @@ import {
   basketActionsType,
   decreaseSumPrice,
   increaseSumPrice,
-  successfulLoadingBasket,
 } from "../actions/basket.actions";
 
 
@@ -28,14 +27,14 @@ export class BasketEffects {
   ) {}
 
 
-
-  loadBasket$ = createEffect(() => this.actions$.pipe(
-    ofType(basketActionsType.LoadingBasket),
-    mergeMap( () => this.loadBackService.getArrayBasket("http://localhost:3000/basket")
-      .pipe(
-        map( basket => successfulLoadingBasket({array: basket})),
-      ),
-    )));
+  //
+  // loadBasket$ = createEffect(() => this.actions$.pipe(
+  //   ofType(basketActionsType.LoadingBasket),
+  //   mergeMap( () => this.loadBackService.getArrayBasket("http://localhost:3000/basket")
+  //     .pipe(
+  //       map( basket => successfulLoadingBasket({array: basket})),
+  //     ),
+  //   )));
 
 
 

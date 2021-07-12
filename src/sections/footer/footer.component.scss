@@ -1,35 +1,22 @@
 
-
-
-
-
-
-
 .footerBox{
   width: 100%;
-
   height: 160px;
   background: black;
   color: white;
   display: grid;
-
   grid-template: 1fr / 1fr 1fr 1fr ;
   justify-items: center;
   align-items: center;
-
   font-family: Verdana, Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-
   .footerBox_Messengers{
-
     a{
       margin: 10px;
     }
   }
-
-
 }
 
 @media (max-width:850px) {
@@ -37,8 +24,6 @@
     grid-template: 1fr 1fr 1fr/ 1fr;
   }
 }
-
-
 
 @media (max-width:310px) {
   .footerBox{

@@ -4,35 +4,28 @@ import { ProductInterface } from "../../interfaces/product-state";
 
 import { Store } from "@ngrx/store";
 
+import { Categories } from "../../interfaces/categories";
 import { LoadBackService } from "../../service/loadback.service";
-import {
-  addElementBasket,
-  changeQuantityBasketArray, clearBasket,
-  countingSumPrice, deleteElementBasket,
-} from "../../store/actions/basket.actions";
 import { addOrder } from "../../store/actions/orders.action";
-import { basketArraySelector, basketSumPriceSelector } from "../../store/selectors/basket.selector";
+import { ClearBasketArray, deleteBasketElement, setUser } from "../../store/actions/user.actions";
+import { bouquetsArraySelector } from "../../store/selectors/bouquet.selector";
+import { compositionsArraySelector } from "../../store/selectors/compositions.selector";
+import { flowersArraySelector } from "../../store/selectors/flowers.selector";
+import { giftsArraySelector } from "../../store/selectors/gifts.selector";
 import { ordersArraySelector } from "../../store/selectors/orders.selector";
 import { userSelector } from "../../store/selectors/user.selector";
-import { BasketInterface, InitBasketInterface } from "../../store/states/state-categories/basket-state";
+import { BasketInterface } from "../../store/states/state-categories/basket-state";
 import { OrderInterface, ProductBasket } from "../../store/states/state-categories/orders-state";
-import { initializtionUser, UsersInterface } from "../../store/states/state-categories/user-state";
+import { Basket, initializtionUser, UsersInterface } from "../../store/states/state-categories/user-state";
 
 
 
 @Injectable()
 export class BasketService {
 
-
-  public originalArray: BasketInterface[] = [];
   public copyArray: BasketInterface[] = [];
   public sumPrice: number = 0;
   private arrayFromOrder: ProductBasket[] = [];
-
-
-
-  public basket$: Observable<BasketInterface[]> = this.store.select(basketArraySelector);
-  public sumPrice$: Observable<number> = this.store.select(basketSumPriceSelector);
 
   private orders$: Observable<OrderInterface[]> = this.store.select(ordersArraySelector);
   private orderLengths: number = 0 ;
@@ -42,63 +35,59 @@ export class BasketService {
 
 
 
+
   constructor(public store: Store, public loadBackService: LoadBackService) {
-
-    this.basket$.subscribe( array => {
-      this.originalArray = array;
-      this.store.dispatch(countingSumPrice({array:  this.originalArray }));
-      this.copyArray = this.originalArray.map((element: BasketInterface) => element);
-
-
-    });
-
-    this.sumPrice$.subscribe( price => this.sumPrice = price);
 
     this.orders$.subscribe( array => this.orderLengths = array.length);
 
-    this.user$.subscribe( user => this.user =  user);
+    this.user$.subscribe(
+      user => {this.user =  user;
+        this.setBasketArray(); });
   }
 
 
- public changeQuantity (element: BasketInterface): void {
-    // Изменяем количество елемента в массиве баскет
-  this.store.dispatch(changeQuantityBasketArray({element: element}));
- }
-
-
  public addElement(element: ProductInterface): void {
+
     let pass: boolean = true;
     this.copyArray.forEach(el => {
       if (el._id === element._id) { pass = false; }
     });
     if (pass) {
-      const elementBasket: BasketInterface = Object.assign({quantity: 1}, element);
-      elementBasket.quantity = 1;
-      this.store.dispatch(addElementBasket({element: elementBasket}));
-       this.loadBackService.postElement("http://localhost:3000/basket", elementBasket);
+      const basketElement: Basket = {
+        basketId: element._id,
+        quantity: 1,
+        basketCategories: element.categories,
+      };
+
+      const newBasketArray: Basket[] = [];
+      this.user.basked.forEach( el => newBasketArray.push(el));
+      newBasketArray.push(basketElement);
+
+      const newUser: UsersInterface = Object.assign({}, this.user);
+
+      newUser.basked = newBasketArray;
+
+      this.store.dispatch(setUser({user: newUser}));
+
+      if ( this.user.email !== "") {
+        this.loadBackService.putElement(`http://localhost:3000/user/${newUser._id}`, newUser);
+      }
+
     }
  }
 
- public deleteElement(id: string): void {
-  this.store.dispatch(deleteElementBasket({id: id}));
-   this.loadBackService.deleteElement(`http://localhost:3000/basket/${id}`);
- }
-
-
-
  public orderAdd(): void {
+   this.copyArray.forEach(element => {
+     const x: ProductBasket = {
+       category: element.categories,
+       idProduct: element._id,
+       quantity: element.quantity,
+     };
+     this.arrayFromOrder.push(x);
+   });
 
-    this.copyArray.forEach( element => {
-      const x: ProductBasket = {
-        category: element.categories,
-        idProduct: element._id,
-        quantity: element.quantity,
-      };
-      this.arrayFromOrder.push(x);
-    });
-
-
-   const order: OrderInterface = {
+   // tslint:disable-next-line:no-any
+   const order: any = {
      number: this.orderLengths + 1,
      arrayProduct: this.arrayFromOrder,
      time: Date.now(),
@@ -109,13 +98,128 @@ export class BasketService {
 
    this.arrayFromOrder = [];
 
-    console.log("колво ", order.arrayProduct[0].quantity);
-   this.loadBackService.postElement("http://localhost:3000/orders", order );
+   this.loadBackService.postElement("http://localhost:3000/orders", order);
+   this.store.dispatch(addOrder({newElement: order}));
 
-   this.store.dispatch( addOrder({newElement: order}));
-   this.store.dispatch(clearBasket());
-
+   this.store.dispatch(ClearBasketArray());
+   const newUser: UsersInterface = Object.assign({}, this.user);
+   newUser.basked = [];
+   if (this.user.email !== "") {
+     this.loadBackService.putElement(`http://localhost:3000/user/${this.user._id}`, newUser);
+   }
 
  }
 
+
+  setBasketArray (): void {
+
+    this.copyArray = [];
+
+
+    let basketProduct: BasketInterface | undefined;
+
+    if (this.user.basked !== undefined) {
+
+      for (const element of  this.user.basked) {
+        basketProduct = undefined;
+
+        switch (element.basketCategories) {
+          case Categories.bouquets: {
+            const product$: Observable<ProductInterface[]> = this.store.select(bouquetsArraySelector);
+            product$.subscribe( array => {
+              basketProduct =  Object.assign(
+                {  quantity: element.quantity},
+                array.find(el => el._id === element.basketId) ); }) ;
+            break; }
+
+          case Categories.flowers: {
+            const product$: Observable<ProductInterface[]> = this.store.select(flowersArraySelector);
+            product$.subscribe( array => {
+              basketProduct =  Object.assign(
+                {  quantity: element.quantity},
+                array.find(el => el._id === element.basketId) ); }) ;
+            break; }
+
+          case Categories.compositions: {
+            const product$: Observable<ProductInterface[]> = this.store.select(compositionsArraySelector);
+            product$.subscribe( array => {
+              basketProduct =  Object.assign(
+                {  quantity: element.quantity},
+                array.find(el => el._id === element.basketId) ); }) ;
+            break; }
+
+          case Categories.gifts: {
+            const product$: Observable<ProductInterface[]> = this.store.select(giftsArraySelector);
+            product$.subscribe( array => {
+              basketProduct =  Object.assign(
+                {  quantity: element.quantity},
+                array.find(el => el._id === element.basketId) ); }) ;
+            break; }
+
+          default: break;
+        }
+        if (basketProduct !== undefined ) {
+          this.copyArray.push(basketProduct);
+         // this.quantity.push(element.quantity);
+        }
+      }
+    }
+    this.sumPrice = 0;
+    this.copyArray.forEach( el => this.sumPrice += el.price * el.quantity);
+
+  }
+
+
+
+
+  public changeQuantity( element: BasketInterface, operation: string ): void {
+
+    if (operation === "+") {
+      element.quantity++;
+    } else {   element.quantity--; }
+
+    const newBasketArray: Basket[] = [];
+
+    this.user.basked.forEach( el => {
+      if (el.basketId === element._id) {
+        const changeElement: Basket = {
+          basketId: el.basketId,
+          quantity:  element.quantity,
+          basketCategories: el.basketCategories, };
+        newBasketArray.push(changeElement);
+      } else { newBasketArray.push(el); }
+    });
+
+    const newUser: UsersInterface = Object.assign( {}, this.user);
+    newUser.basked = newBasketArray;
+
+    if (this.user.email !== "") {
+      this.loadBackService.putElement(`http://localhost:3000/user/${newUser._id}`, newUser);
+    }
+
+
+
+    this.store.dispatch(setUser({user: newUser}));
+  }
+
+
+
+  public deleteElement(id: string): void {
+
+    const newBasketArray: Basket[] = [];
+
+    this.user.basked.forEach( el => {
+      if (el.basketId !== id) {
+        newBasketArray.push(el); }});
+
+    const newUser: UsersInterface = Object.assign({}, this.user);
+    newUser.basked = newBasketArray;
+
+    this.store.dispatch(deleteBasketElement({user: newUser}));
+
+    if (this.user.email !== "") {
+      this.loadBackService.putElement(`http://localhost:3000/user/${newUser._id}`, newUser);
+    }
+
+  }
 }

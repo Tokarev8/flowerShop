@@ -47,16 +47,6 @@ export enum reason {
   funeralFlowers = "Траурные цветы",
 }
 
-
-
-
-
-
-
-
-
-
-
 export const flowersArray: flowers[] = [];
 flowersArray.push(flowers.Roses);
 flowersArray.push(flowers.tulips);

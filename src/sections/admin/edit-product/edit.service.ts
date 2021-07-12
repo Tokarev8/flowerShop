@@ -8,7 +8,6 @@ export class EditService {
 
   public product: ProductInterface = initialStateProduct;
   constructor(private http: HttpClient ) {
-
   }
 
 

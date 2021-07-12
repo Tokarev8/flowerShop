@@ -7,23 +7,14 @@
 
   <h2>Заказы</h2>
 
-
-
-
-
-
-
-
   <div class="sortBox">
-
-
 
       <div class="sortBox_selectSort">
         <label for="sortSel">Сортировать</label>
-        <select name="" id="sortSel" (input)="orderService.setSort($event)">
-          <option [value]="orderService.arraySort[0]">{{orderService.arraySort[0]}}</option>
-          <option [value]="orderService.arraySort[1]">{{orderService.arraySort[1]}}</option>
-          <option [value]="orderService.arraySort[2]">{{orderService.arraySort[2]}}</option>
+        <select name="" id="sortSel" (input)="orderService.setSort($event)" >
+          <option >{{orderService.arraySort[0]}}</option>
+          <option >{{orderService.arraySort[1]}}</option>
+          <option >{{orderService.arraySort[2]}}</option>
         </select>
       </div>
 
@@ -34,12 +25,12 @@
       }">
         <div>
           <label>От</label>
-          <input type="date">
+          <input type="date" (input)="orderService.setDateFrom($event)">
         </div>
 
         <div>
           <label>До</label>
-          <input type="date">
+          <input type="date" (input)="orderService.setDateBefore($event)">
         </div>
 
       </div>
@@ -52,12 +43,9 @@
       }">
         <div>
           <label >Номер</label>
-          <input type="number" min="0">
+          <input type="number" min="0" (input)="orderService.setSearchNumber($event)">
         </div>
       </div>
-
-
-
 
 
       <div class="sortBox_condition"
@@ -67,27 +55,20 @@
 
         <div>
           <label>Активные</label>
-          <input type="checkbox">
+          <input type="checkbox" checked (click)="orderService.setSortStatus(0)">
         </div>
 
         <div>
           <label>Выполненные</label>
-          <input type="checkbox">
+          <input type="checkbox" checked (click)="orderService.setSortStatus(1)">
         </div>
 
         <div>
           <label from="CanceledOrders">Отменнёные</label>
-          <input type="checkbox" id="CanceledOrders">
+          <input type="checkbox" id="CanceledOrders" checked (click)="orderService.setSortStatus(2)">
         </div>
 
       </div>
-
-
-
-
-
-
-
 
   </div>
 
@@ -106,7 +87,6 @@
         canceled: element.status === 2,
         completed: element.status === 1}"
        (click)="orderService.goToOrder(element)"
-
   >
 
     <div>
@@ -139,67 +119,3 @@
 
  </div>
 
-
-
-<button (click)="op()">POPS</button>
-
-<p>{{orderService.numberOfPages}}</p>
-
-
-
-
-
-
-
-
-<!--<div class="OrdersBlock">-->
-
-
-<!--<table class="OrdersBlock_table">-->
-<!--  <caption>Заказы</caption>-->
-
-<!--  <th>Номер</th>-->
-<!--  <th>Сумма</th>-->
-<!--  <th>Дата</th>-->
-
-
-
-<!--  <tr  class="basketProduct" *ngFor = "let element of orderService.ordersArray">-->
-<!--    <td>{{element.number}}</td>-->
-<!--    <td>{{element.total}}</td>-->
-<!--    <td>{{element.time | date}}</td>-->
-<!--    <td>  <button>...</button></td>-->
-<!--  </tr>-->
-
-<!--</table>-->
-
-
-<!--<button (click)="op()">POPS</button>-->
-
-
-
-
-
-<!--</div>-->
-
-
-
-
-
-
-
-
-<!--<div  class="basketProduct" *ngFor = "let element of orderService.orders$ | async" >-->
-
-<!--  <div>-->
-<!--    <p> {{element.number}}</p>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <p>{{element.time| date}}</p>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <p>{{element.total}}</p>-->
-<!--  </div>-->
-
-
-<!--</div>-->

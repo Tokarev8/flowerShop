@@ -5,7 +5,7 @@ import { ProductInterface } from "../../interfaces/product-state";
 import { Store } from "@ngrx/store";
 
 import { giftsArraySelector } from "../../store/selectors/gifts.selector";
-import {MenuService} from "../show-products/menu/menu.service";
+import { MenuService } from "../show-products/menu/menu.service";
 
 
 
@@ -15,7 +15,6 @@ export class GiftsService {
   public originalArray: ProductInterface[] = [];
   public copyArray: ProductInterface[] = [];
   public gifts$: Observable<ProductInterface[]> = this.store.select(giftsArraySelector);
-
 
   constructor(public store: Store,  public menuService: MenuService) {
     this.gifts$.subscribe( array => {
@@ -27,5 +26,4 @@ export class GiftsService {
       this.copyArray = this.menuService.mainFilter(this.copyArray);
     });
   }
-
 }

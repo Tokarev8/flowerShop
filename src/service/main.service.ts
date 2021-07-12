@@ -1,27 +1,28 @@
-import { HttpClient } from "@angular/common/http";
+
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Categories } from "../interfaces/categories";
 import { ProductInterface } from "../interfaces/product-state";
+import { flowers, reason } from "../interfaces/tags/tags-interface";
 import { Url } from "../interfaces/url";
-import { bouquetsChangeFavorites, loadingBouquets } from "../store/actions/bouquets.actions";
+import { BouquetsService } from "../sections/bouquets/bouquets.service";
+import { CompositionService } from "../sections/compositions/compositions.service";
+import { FlowersService } from "../sections/flowers/flowers.service";
+import { GiftsService } from "../sections/gifts/gifts.service";
+import { priceFrom, priceTo } from "../service/function-sorting";
+import {  loadingBouquets } from "../store/actions/bouquets.actions";
 import {
-  favoritesAddElement,
-  favoritesDeleteElement,
   initializationFavoritesArray,
 } from "../store/actions/favorites.actions";
-import { changeFavoritesFlowers, loadingFlowers} from "../store/actions/flowers.actions";
+import { loadingFlowers } from "../store/actions/flowers.actions";
+
 import { bouquetsArraySelector } from "../store/selectors/bouquet.selector";
 import { favoritesArraySelector } from "../store/selectors/favorites.selector";
 import { flowersArraySelector } from "../store/selectors/flowers.selector";
+import { userSelector } from "../store/selectors/user.selector";
+import { initializtionUser, UsersInterface } from "../store/states/state-categories/user-state";
 import { LoadBackService } from "./loadback.service";
-import {BouquetsService} from "../sections/bouquets/bouquets.service";
-import {FlowersService} from "../sections/flowers/flowers.service";
-import {CompositionService} from "../sections/compositions/compositions.service";
-import {GiftsService} from "../sections/gifts/gifts.service";
-import { priceTo, priceFrom } from "../service/function-sorting";
-import {flowers, reason} from "../interfaces/tags/tags-interface";
 
 
 
@@ -29,12 +30,12 @@ import {flowers, reason} from "../interfaces/tags/tags-interface";
 export class MainService {
   private url: string = "";
   public products$: Observable<ProductInterface[]> = this.store.select(bouquetsArraySelector);
-  // public products$: Observable<ProductInterface[]> | undefined ;
+
+
 
 
   public addElement: ProductInterface | undefined;
-  // public originalArray: ProductInterface[] = [];
-  public copyArray: ProductInterface[] = []; // будет выводить товар сортировать и тд
+  public copyArray: ProductInterface[] = [];
 
 
   // для сорта
@@ -47,16 +48,20 @@ export class MainService {
   public reasonTag: reason[] = [];
 
 
+  // новая колекция
+  public user$: Observable<UsersInterface> = this.store.select(userSelector);
+  public user: UsersInterface = initializtionUser;
+  public favorites$: Observable<ProductInterface[]> = this.store.select(favoritesArraySelector);
+  public favoriteArray: ProductInterface[] = [];
+
+
   constructor(private loadBackService: LoadBackService,
               private store: Store,
               private bouquetService: BouquetsService,
               private flowersService: FlowersService,
               private compositionService: CompositionService,
               private giftsService: GiftsService,
-  ) {
-
-
-  }
+  ) {}
 
 
   public setUrl(url: Url): void {
@@ -89,32 +94,6 @@ export class MainService {
 
   }
 
-  // favorite on off
-
-  public addFavorite(element: ProductInterface): void {
-    const objCopy: ProductInterface = Object.assign({}, element);
-    switch (element.categories) {
-      case Categories.bouquets: {
-        this.store.dispatch(bouquetsChangeFavorites({element: element}));
-        this.loadBackService.ChangeFavoritParamet(`http://localhost:3000/bouquets/${element._id}`, objCopy);
-        break;
-      }
-      case Categories.flowers: {
-        this.store.dispatch(changeFavoritesFlowers({element: element}));
-        this.loadBackService.ChangeFavoritParamet(`http://localhost:3000/flowers/${element._id}`, objCopy);
-        break;
-      }
-    }
-    if (!element.favorite) {
-      objCopy.favorite = !objCopy.favorite;
-      this.loadBackService.postElement("http://localhost:3000/favorites", objCopy);
-      this.store.dispatch(favoritesAddElement({element: objCopy}));
-    } else {
-      objCopy.favorite = !objCopy.favorite;
-      this.loadBackService.deleteElement(`http://localhost:3000/favorites/${element._id}`);
-      this.store.dispatch(favoritesDeleteElement({element: element}));
-    }
-  }
 
 
   public setPriceFrom(array: ProductInterface[], min: number): void {
@@ -157,28 +136,8 @@ export class MainService {
       copyArray = this.filterFlowersTag(copyArray);
     }
 
-
-    console.log(copyArray);
     this.setProductArray(copyArray);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   private getOriginalArray(): void {

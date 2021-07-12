@@ -14,6 +14,7 @@ export interface OrderInterface {
   total: number;
   buyerId: string;
   status: number;
+  _id: string;
 }
 
 export interface OrdersState {
@@ -31,5 +32,6 @@ export const initOrderInterface = {
   time: 0,
   total: 0,
   buyerId: "",
-  status: 0
+  status: 0,
+  _id: ""
 };

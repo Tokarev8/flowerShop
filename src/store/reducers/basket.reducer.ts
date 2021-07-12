@@ -6,8 +6,7 @@ import {
   addElementBasket, changeQuantityBasketArray, clearBasket, countingSumPrice, decreaseSumPrice,
   deleteElementBasket,
   increaseSumPrice,
-  loadingBasket,
-  successfulLoadingBasket,
+   setBasketArray,
 } from "../actions/basket.actions";
 import { BasketInterface, initializationProductBasket } from "../states/state-categories/basket-state";
 
@@ -16,13 +15,13 @@ import { BasketInterface, initializationProductBasket } from "../states/state-ca
 export const basketReducer = createReducer(
   initializationProductBasket,
 
-  on(loadingBasket, state => {
-    return {...state};
-  }),
-
-  on(successfulLoadingBasket, (state, action) => {
-    return {...state, array: action.array};
-  }),
+  // on(loadingBasket, state => {
+  //   return {...state};
+  // }),
+  //
+  // on(successfulLoadingBasket, (state, action) => {
+  //   return {...state, array: action.array};
+  // }),
 
   on(addElementBasket, (state, action) => {
     const array: BasketInterface[] = state.array.map((el) => el);
@@ -69,6 +68,11 @@ export const basketReducer = createReducer(
   on(clearBasket, (state) => {
     return {...state, array: []};
   }),
+
+  on(setBasketArray, (state, action) => {
+    return {...state, array: action.array};
+  }),
+
 
 
 

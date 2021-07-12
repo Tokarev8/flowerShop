@@ -3,13 +3,17 @@ import { ProductInterface } from "../../interfaces/product-state";
 import {
   addElement,
   addElements, bouquetsChangeElement,
-  bouquetsChangeFavorites,
+  ChangeFavoritesBouquets,
   deleteElement,
-  deleteElements, initialSuccess,
+  deleteElements,
+  favoritesBouquetsTrue,
+  initialSuccess,
   loadingBouquets,
   showElements,
+
 } from "../actions/bouquets.actions";
 import { initialBouquetsState } from "../states/state-categories/bouquets-state";
+import {favoritesTrue} from "../actions/flowers.actions";
 
 
 
@@ -55,13 +59,13 @@ export const bouquetsReducer = createReducer(
   }),
 
 
-  on(bouquetsChangeFavorites, (state, action) =>  {
+  on(ChangeFavoritesBouquets, (state, action) =>  {
 
     const modifiedArray: ProductInterface[] = [];
 
       state.array.forEach((elementArray) => {
 
-      if (elementArray === action.element) {
+      if (elementArray._id === action.element._id) {
 
         const objCopy: ProductInterface = Object.assign({}, elementArray);
         objCopy.favorite = !objCopy.favorite;
@@ -84,6 +88,20 @@ export const bouquetsReducer = createReducer(
       } else { modifiedArray.push(elementArray); }
     });
     return {...state, array: modifiedArray};
+  }),
+
+  on(favoritesBouquetsTrue, (state, action) =>  {
+    const newArray: ProductInterface [] = [];
+    state.array.forEach( el => {
+      if ( el._id === action.newElement._id) {
+        let changeElement: ProductInterface = Object.assign({}, el);
+        console.log("DO", changeElement.favorite);
+        changeElement.favorite = true;
+        console.log("POSLE", changeElement.favorite);
+        newArray.push(changeElement);
+      } else {newArray.push(el); }
+    });
+    return {...state, array: newArray};
   }),
 
 

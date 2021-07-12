@@ -27,18 +27,13 @@ import { EditService } from "./edit.service";
   styleUrls: ["./edit-product.component.scss"]
 })
 export class EditProductComponent  {
-
-
   public myform: FormGroup;
-
-
 
   public hideS: boolean = false;
   public hideD: boolean = false;
   public hideP: boolean = false;
   public hideF: boolean = false;
   public hideR: boolean = false;
-
 
   public text: string = "false";
 
@@ -50,17 +45,13 @@ export class EditProductComponent  {
   public reasonsActiveTag: reason[] | string[] = this.productService.product.reason.map( el => el);
   public reasonsTagStr: string = this.reasonsActiveTag.join(",");
 
-
   public flowers: FormArray =  new FormArray([]);
-
 
   constructor(public loadBackService: LoadBackService,
               public editService: EditService,
               public productService: ProductService,
               public store: Store,
   ) {
-
-    console.log(this.flowersTagStr);
 
     this.myform = new FormGroup({
       category: new FormControl(this.productService.product.categories, [Validators.required]),
@@ -82,9 +73,6 @@ export class EditProductComponent  {
       const controlNewPhoto = new FormControl(img, Validators.required);
       (this.myform.get("photo") as FormArray).push(controlNewPhoto);
     }
-
-
-
   }
 
   addPhoto(): void {
@@ -106,14 +94,8 @@ export class EditProductComponent  {
   }
 
 
-
-
-
-
   showFlowers(): void {
     this.hideF = !this.hideF;
-
-
   }
 
   showReason(): void {
@@ -121,9 +103,7 @@ export class EditProductComponent  {
   }
 
   hideStructure(): void {
-
     this.hideS = !this.hideS;
-
   }
 
   hideDescription(): void {
@@ -137,7 +117,6 @@ export class EditProductComponent  {
     } else {
       this.flowersActiveTag.push(flowerElement);
     }
-
     this.flowersTagStr = "";
 
     for ( const element of this.flowersActiveTag) {
@@ -148,11 +127,7 @@ export class EditProductComponent  {
       }
     }
 
-
-    // this.myform.controls[this.groupControl].setValue()
     this.myform.get("flowers")?.setValue(this.flowersTagStr);
-
-
   }
 
 
@@ -180,13 +155,7 @@ export class EditProductComponent  {
       const formData = {...this.myform.value};
       this.translete(formData);
     }
-
-
-    // привести в форму в продукт интерфейс
-
   }
-
-
 
 
 // tslint:disable-next-line:no-any
@@ -228,11 +197,8 @@ export class EditProductComponent  {
       default: break;
     }
 
-
     this.loadBackService.putElement(url, product);
-
   }
-
 
 }
 

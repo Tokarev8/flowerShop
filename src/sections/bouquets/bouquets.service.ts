@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { ProductInterface } from "../../interfaces/product-state";
 import { bouquetsArraySelector } from "../../store/selectors/bouquet.selector";
-import { Store } from "@ngrx/store";
-import {priceTo, priceFrom, filterFlowersTag} from "../../service/function-sorting";
-import {MenuService} from "../show-products/menu/menu.service";
+import { MenuService } from "../show-products/menu/menu.service";
+
 
 
 @Injectable()

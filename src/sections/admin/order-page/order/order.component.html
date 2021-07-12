@@ -1,14 +1,14 @@
 
 
 
-<button (click)="op()">OPA</button>
+
 
 <div class="header">
 
   <div class="header_orderTitle">
-    <p>Номер: {{order?.number}}</p>
+    <p>Номер заказа: {{order?.number}}</p>
     <p>Дата: {{order?.time | date}}</p>
-    <p>Цена: {{order?.total}}</p>
+    <p>Цена: {{order?.total}} &#8381;</p>
   </div>
 
 
@@ -60,7 +60,9 @@
 
 <h2>Список товаров</h2>
 
-  <div *ngFor="let element of productArray; let idx = index" class="productArray">
+  <div *ngFor="let element of productArray; let idx = index"
+       class="productArray"
+       (click)="setProduct(element)">
     <div class="productArray_ImageBox">
       <img src="{{element.image[0]}}" alt="">
     </div>

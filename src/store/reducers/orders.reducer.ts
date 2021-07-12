@@ -23,10 +23,17 @@ export const ordersReducer = createReducer(
     return {...state, orders: newArray};
   }),
 
+
+
   on(changeOrder, (state, action) => {
+
+
     const newArray: OrderInterface[] = [];
+
+
+
   state.orders.forEach( (element) => {
-    if (element === action.element) {
+    if (element.number === action.element.number) {
       const obj: OrderInterface = Object.assign({}, element);
       obj.status = action.statusNumber;
       newArray.push(obj);

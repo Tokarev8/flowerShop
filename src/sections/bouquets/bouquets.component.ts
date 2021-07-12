@@ -1,8 +1,6 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
-import { Url } from "../../interfaces/url";
-import { MainService } from "../../service/main.service";
+import { ProductInterface } from "../../interfaces/product-state";
 import { BouquetsService } from "./bouquets.service";
-import {ProductInterface} from "../../interfaces/product-state";
 
 @Component({
   selector: "bouquets-component",
@@ -20,10 +18,5 @@ export class BouquetsComponent  {
   }
 
 
-
-
-
-
 }
-// данный компонент выводит елементы из массива favorites (который в сторе) их можно купить, удалить и пожалуй всё
-// эмалюция массива
+

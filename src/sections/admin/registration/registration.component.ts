@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
-import { MyValidators } from "./my.validators";
-import { Basket, Favorite, PostUser } from "../../../store/states/state-categories/user-state";
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { LoadBackService } from "../../../service/loadback.service";
-import {Router} from "@angular/router";
+import {  PostUser } from "../../../store/states/state-categories/user-state";
+
 
 
 
@@ -54,7 +54,7 @@ export class RegistrationComponent  {
       login: object.login,
       email: object.email,
       password: object.password,
-      status: "user",
+      status: false,
       basked: [],
       favorite: [],
     };
@@ -62,14 +62,6 @@ export class RegistrationComponent  {
     const url: string = "http://localhost:3000/user";
 
     this.loadBackService.postElement(url, userSend);
-
-
-
-
-    // Нужно задиспачить юзера, и автоматически выполнить вход в профиль
-    //////////////////////////////////////////////////////////////////////
-
-    // отправляем на сервер
 
   }
 }

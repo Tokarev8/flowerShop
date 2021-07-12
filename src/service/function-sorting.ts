@@ -1,6 +1,6 @@
 import { ProductInterface } from "../interfaces/product-state";
-import {Categories} from "../interfaces/categories";
-import {flowers, reason} from "../interfaces/tags/tags-interface";
+
+import { flowers, reason } from "../interfaces/tags/tags-interface";
 
 
 export function priceFrom(array: ProductInterface[], min: number): ProductInterface[] {
@@ -40,29 +40,40 @@ export function filterReasonsTag(array: ProductInterface[], reasonTag: reason[])
 }
 
 export function popularSort(array: ProductInterface[], sort: string): ProductInterface[] {
+
+  const newArray: ProductInterface[] = [];
+  array.forEach( el => {
+    newArray.push(Object.assign({}, el));
+  });
   switch (sort) {
-    case "up" : array.sort( (a, b) => {
-      return b.popularity - a.popularity; });
+    case "up" : newArray.sort( (a, b) => {
+      return b?.popularity - a?.popularity; });
       break;
-    case "down" : array.sort( (a, b) => {
-      return a.popularity - b.popularity; });
+    case "down" : newArray.sort( (a, b) => {
+      return a?.popularity - b?.popularity; });
       break;
     default: break;
   }
-  return array;
+  return newArray;
 }
 
 export function priceSort(array: ProductInterface[], sort: string): ProductInterface[] {
+
+  const newArray: ProductInterface[] = [];
+  array.forEach( el => {
+    newArray.push(Object.assign({}, el));
+  });
+
   switch (sort) {
-    case "up" : array.sort( (a, b) => {
+    case "up" : newArray.sort( (a, b) => {
       return b.price - a.price; });
       break;
-    case "down" : array.sort( (a, b) => {
+    case "down" : newArray.sort( (a, b) => {
       return a.price - b.price; });
       break;
     default: break;
   }
-  return array;
+  return newArray;
 }
 
 

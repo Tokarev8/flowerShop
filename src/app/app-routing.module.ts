@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AdminComponent } from "../sections/admin/admin-panel/admin.component";
+import { LoginPageComponent } from "../sections/admin/login-page/login-page.component";
+import { RegistrationComponent } from "../sections/admin/registration/registration.component";
 import { BasketComponent } from "../sections/basket/basket.component";
 import { BouquetsComponent } from "../sections/bouquets/bouquets.component";
 import { CompositionsComponent } from "../sections/compositions/compositions.component";
@@ -16,7 +17,7 @@ import { PromotionsComponent } from "../sections/promotions/promotions.component
 
 const routes: Routes = [
   {path: "", component: MainLayoutComponent, children: [
-      {path: "", redirectTo: "/", pathMatch: "full"},
+      {path: "", redirectTo: "/bouquets", pathMatch: "full"},
       {path: "", component: PopularComponent},
       {path: "bouquets", component: BouquetsComponent},
       {path: "basket", component: BasketComponent},
@@ -31,7 +32,9 @@ const routes: Routes = [
 
       {path: "admin", loadChildren: () => import("../sections/admin/admin-panel/admin.module")
           .then(m => m.AdminModule)},
-      // {path: "admin", loadChildren: "../sections/admin-panel/admin.module#AdminModule"},
+      {path: "login", component: LoginPageComponent},
+      {path: "registration", component: RegistrationComponent},
+
 
 ];
 

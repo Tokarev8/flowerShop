@@ -1,8 +1,6 @@
 
 import { Component, OnInit } from "@angular/core";
-import { ProductInterface } from "../../interfaces/product-state";
-import { Url } from "../../interfaces/url";
-import { MainService } from "../../service/main.service";
+import { Store } from "@ngrx/store";
 import { FavoritesService } from "./favorites.service";
 
 
@@ -14,9 +12,7 @@ import { FavoritesService } from "./favorites.service";
 export class FavoritesComponent implements OnInit {
 
 
-  constructor(public favoriteService: FavoritesService) {
-
-
+  constructor(public favoriteService: FavoritesService, private store: Store) {
   }
 
 

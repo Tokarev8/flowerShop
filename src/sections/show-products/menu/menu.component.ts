@@ -13,9 +13,12 @@ import { MenuService } from "./menu.service";
 @Component({
   selector: "menu-products",
   templateUrl: "./menu.component.html",
-  styleUrls: ["./menu.component.scss"]
+  styleUrls: ["./menu.component.scss", "./menu-style.scss"]
 })
 export class MenuComponent  {
+
+  public miniMenu: number = 0;
+  public showMiniMenu: number = 4;
 
   public sortUp: string = "\u25B2";
   public sortDown: string = "\u25BC";
@@ -79,6 +82,8 @@ export class MenuComponent  {
         break;
       default: break;
     }
+    this.menuService.popular = true;
+    this.menuService.price = false;
     this.menuService.subject$.next();
   }
 
@@ -96,8 +101,31 @@ export class MenuComponent  {
         break;
       default: break;
     }
+    this.menuService.popular = false;
+    this.menuService.price = true;
     this.menuService.subject$.next();
   }
 
+  plusMiniMenu(): void {
+    this.miniMenu++;
+    if ( this.miniMenu > 3) {
+      this.miniMenu = 0 ;
+    }
+    this.showMiniMenu = 4;
+  }
 
+  minusMiniMenu(): void {
+    this.miniMenu--;
+    if ( this.miniMenu < 0) {
+      this.miniMenu = 3 ;
+    }
+    this.showMiniMenu = 4;
+  }
+
+
+  setShowMenu(number: number): void {
+    this.showMiniMenu ===  this.miniMenu
+      ? this.showMiniMenu = 4
+      : this.showMiniMenu = number;
+  }
 }

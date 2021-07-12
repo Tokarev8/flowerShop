@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { setUser } from "../../../store/actions/user.actions";
+import { loadingUsers } from "../../../store/actions/users.actions";
 import { userSelector } from "../../../store/selectors/user.selector";
 import { usersArraySelector } from "../../../store/selectors/users.selector";
 import { initializtionUser, UsersInterface } from "../../../store/states/state-categories/user-state";
@@ -15,7 +16,6 @@ import { initializtionUser, UsersInterface } from "../../../store/states/state-c
   styleUrls: ["./login-page.component.scss"]
 })
 export class LoginPageComponent implements OnInit {
-  submitted: boolean = false;
   form: FormGroup;
   private usersArray: UsersInterface[] = [];
   private users$: Observable<UsersInterface[]> = this.store.select(usersArraySelector);
@@ -25,6 +25,7 @@ export class LoginPageComponent implements OnInit {
 
 
   constructor(private store: Store, private route: Router) {
+    this.store.dispatch(loadingUsers());
     this.form = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
@@ -48,7 +49,6 @@ export class LoginPageComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.submitted = true;
     const user = {
       email: this.form.value.email,
       password: this.form.value.password,
@@ -65,14 +65,7 @@ export class LoginPageComponent implements OnInit {
     if (this.user.email !== user.email) {
       this.userNotFound = true;
     }
-
+    this.form.reset();
   }
-
-
-
-
-
-
-
 
 }

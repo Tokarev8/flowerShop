@@ -7,8 +7,9 @@ import { BasketInterface } from "../states/state-categories/basket-state";
 
 
 export enum basketActionsType {
-  LoadingBasket = "[BASKET] Loading array basket from the server",
-  LoadingSuccessBasket = "[BASKET] Loading  array basket success from the server",
+  SetBasketArray = "[BASKET] set array basket from user",
+  // LoadingBasket = "[BASKET] Loading array basket from the server",
+  // LoadingSuccessBasket = "[BASKET] Loading  array basket success from the server",
   // initialErrorBasket = "[BASKET] initial error for array basket",
 
   AddElementArray = "[BASKET] Add element to basket array",
@@ -26,8 +27,8 @@ export enum basketActionsType {
 }
 
 
-export const loadingBasket = createAction(`${basketActionsType.LoadingBasket}`);
-export const successfulLoadingBasket = createAction(`${basketActionsType.LoadingSuccessBasket}`, props<{array: BasketInterface[] }>() );
+export const setBasketArray = createAction(`${basketActionsType.SetBasketArray}`, props<{array: BasketInterface[]}>());
+// export const successfulLoadingBasket = createAction(`${basketActionsType.LoadingSuccessBasket}`, props<{array: BasketInterface[] }>() );
 
 // export const changeFavoriteBasket = createAction(`${basketActionsType.changeFavoritesBasket}`, props<{element: BasketInterface}>() );
 

@@ -15,7 +15,7 @@ export interface UsersInterface {
   email: string;
   password: string;
   _id: string;
-  status: string;
+  status: boolean;
   basked: Basket[];
   favorite: Favorite[];
 }
@@ -24,7 +24,7 @@ export const initializtionUser: UsersInterface = {
   email: "",
   password: "",
   _id: "",
-  status: "",
+  status: false,
   basked: [],
   favorite: [] ,
 };
@@ -56,7 +56,7 @@ export interface PostUser {
   login: string;
   email: string;
   password: string;
-  status: string;
+  status: boolean;
   basked: Basket[];
   favorite: Favorite[];
 }

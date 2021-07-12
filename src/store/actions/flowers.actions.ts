@@ -10,6 +10,10 @@ export enum flowersActionsType {
   LoadingSuccessFlowers = "[FLOWERS] Loading  array flowers success from the server",
   // initialErrorFlowers = "[FLOWERS] initial error for array bouquets",
   changeFavorites = "[FLOWERS] change parameter favorites, for element array flowers",
+  FavoritesTrue = "[FLOWERS]   favorites true",
+
+
+  SetFlowersArray = "[FLOWERS] set  flowers array",
 
   changeFlowers = "[FLOWERS] change  element for array flowers",
 }
@@ -23,3 +27,7 @@ export const successfulLoadingFlowers = createAction(`${flowersActionsType.Loadi
 export const changeFavoritesFlowers = createAction(`${flowersActionsType.changeFavorites}`, props<{element: ProductInterface}>() );
 
 export const flowersChangeElement = createAction(`${flowersActionsType.changeFlowers}`, props<{newElement: ProductInterface}>() );
+
+export const setFlowersArray = createAction(`${flowersActionsType.SetFlowersArray}`, props<{newArray: ProductInterface[]}>() );
+
+export const favoritesTrue = createAction(`${flowersActionsType.FavoritesTrue}`, props<{newElement: ProductInterface}>() );

@@ -3,7 +3,7 @@ import { createReducer, on } from "@ngrx/store";
 import { ProductInterface } from "../../interfaces/product-state";
 
 import {
-  favoritesAddElement, favoritesDeleteElement,
+  favoritesAddElement, favoritesAddElements, favoritesDeleteElement,
   favoritesInitializationSuccess,
   initializationFavoritesArray,
 } from "../actions/favorites.actions";
@@ -40,6 +40,14 @@ export const favoritesReducer = createReducer(
       });
     return {...state, array: modifArray};
   }),
+
+  on(favoritesAddElements, (state, action) =>  {
+    return {...state, array: action.newArray};
+  }),
+
+
+
+
 
 
 

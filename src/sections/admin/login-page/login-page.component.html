@@ -1,6 +1,9 @@
 
 
 
+
+
+
 <form [formGroup]="form"  (ngSubmit) = "submit()">
 
 
@@ -40,7 +43,7 @@
   </div>
 
   <div class="buttonSubj">
-    <button type="submit" [disabled]="form.invalid || submitted">
+      <button type="submit" [disabled]="form.invalid">
       Войти</button>
   </div>
 
@@ -52,6 +55,11 @@
 </div>
 
 <div class="registration">
-  <p>Еще нет аккаунта? <a routerLink="/admin/registration" >Регистрация</a></p>
+  <p>Еще нет аккаунта? <a routerLink="/registration" >Регистрация</a></p>
 </div>
+
+<div class="returnMainPage">
+ <a  routerLink="/" >Вернуться на главную</a>
+</div>
+
 

@@ -1,11 +1,12 @@
-import { ChangeDetectorRef, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable, Subject } from "rxjs";
+import { LoadBackService } from "../../../service/loadback.service";
+import { changeOrder } from "../../../store/actions/orders.action";
 import { ordersArraySelector } from "../../../store/selectors/orders.selector";
-import {initOrderInterface, OrderInterface} from "../../../store/states/state-categories/orders-state";
+import { initOrderInterface, OrderInterface } from "../../../store/states/state-categories/orders-state";
 import { arraySort } from "./order-sort";
-import {changeOrder} from "../../../store/actions/orders.action";
 
 
 @Injectable()
@@ -17,18 +18,24 @@ export class OrderService {
   public maxLengthOrdersArray: number = 1;
   public partArrayOrders: OrderInterface[] = [];
   private orders$: Observable<OrderInterface[]> = this.store.select(ordersArraySelector);
-  // private subject$: Subject<number> = new Subject<number>();
 
 
   // sort
   public arraySort: string[] = arraySort;
-  public choiceSort: string = "";
+  public choiceSort: string = arraySort[0];
+  public searchNumber: string =  "";
+  public streamSort$: Subject<void> = new Subject<void>();
+  public dateFrom: number =  0;
+  public dateBefore: number =  0;
+  public statusOrder: boolean[] = [true, true, true];
 
   // for order
   public order: OrderInterface = initOrderInterface;
 
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store,
+              private router: Router,
+              private loadBackService: LoadBackService) {
 
     this.orders$.subscribe( array => {
       this.originalOrdersArray = array.map( elem => elem);
@@ -40,21 +47,23 @@ export class OrderService {
 
       this.setPartArray(1);
     });
+
+    this.streamSort$.subscribe(() => {
+      this.sortArray();
+      this.setPartArray(1);
+    });
   }
 
 
 
   private setPartArray(number: number): void {
     this.partArrayOrders = [];
-    for (let i: number = 0; i < this.originalOrdersArray.length; i++ ) {
+    for (let i: number = 0; i < this.copyOrdersArray.length; i++ ) {
       if ( i > number * 10) {break; }
-
       if ( i < number * 10 && i >= (number - 1) * 10 ) {
-        this.partArrayOrders.push(this.originalOrdersArray[i]);
+        this.partArrayOrders.push(this.copyOrdersArray[i]);
       }
     }
-    // this.partArrayOrders.sort( (a, b) => b.number - a.number);
-
   }
 
 
@@ -116,17 +125,80 @@ export class OrderService {
   }
 
   setStatusOrder(number: number): void {
-
-    // задиспатчим изменения
     this.store.dispatch(changeOrder({element: this.order, statusNumber: number}));
-
       const x = Object.assign({},  this.order);
       x.status = number;
       this.order = Object.assign({},  x);
-      console.log(x.status );
-
-
+      this.loadBackService.putElement(`http://localhost:3000/orders/${this.order._id}`, {status: number});
   }
+
+
+  // tslint:disable-next-line:no-any
+  setSearchNumber (event: any): void {
+    this.searchNumber = event.target.value;
+    this.streamSort$.next();
+  }
+
+  // tslint:disable-next-line:no-any
+  setDateFrom (event: any): void {
+    this.dateFrom = new Date(event.target.value).getTime();
+    this.streamSort$.next();
+  }
+
+  // tslint:disable-next-line:no-any
+  setDateBefore (event: any): void {
+    this.dateBefore = new Date(event.target.value).getTime();
+    this.streamSort$.next();
+  }
+
+  setSortStatus (number: number): void {
+    this.statusOrder[number] = !this.statusOrder[number];
+    this.streamSort$.next();
+  }
+
+
+
+
+  sortArray(): void {
+    this.copyOrdersArray = this.originalOrdersArray;
+
+    // сортируем по номеру
+    if (this.searchNumber !== "" && this.searchNumber !== "0" ) {
+      this.copyOrdersArray = this.copyOrdersArray.filter(
+        (elem) => elem.number === +this.searchNumber);
+    }
+    // по дате
+
+    // от
+      if ( this.dateFrom !== 0) {
+        this.copyOrdersArray = this.copyOrdersArray.filter(
+          (elem) => elem.time >= this.dateFrom);
+      }
+    // до
+
+    if ( this.dateBefore !== 0) {
+      this.copyOrdersArray = this.copyOrdersArray.filter(
+        (elem) => elem.time <= this.dateBefore);
+    }
+
+    // по состоянию
+    // active
+    if (!this.statusOrder[0] ) {
+      this.copyOrdersArray = this.copyOrdersArray.filter(
+        (elem) => elem.status !== 0);
+    }
+    // completed
+    if (!this.statusOrder[1] ) {
+      this.copyOrdersArray = this.copyOrdersArray.filter(
+        (elem) => elem.status !== 1);
+    }
+    // canceled
+    if (!this.statusOrder[2] ) {
+      this.copyOrdersArray = this.copyOrdersArray.filter(
+        (elem) => elem.status !== 2);
+    }
+  }
+
 
 
 }

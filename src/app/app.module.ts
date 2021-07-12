@@ -23,8 +23,10 @@ import { FlowersEffects } from "../store/effects/flowers.effects";
 import { metaReducers, reducers } from "../store/reducers";
 
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AdminComponent } from "../sections/admin/admin-panel/admin.component";
+import { AuthService } from "../sections/admin/login-page/auth.service";
+import { LoginPageComponent } from "../sections/admin/login-page/login-page.component";
 import { BasketService } from "../sections/basket/basket.service";
 import { BouquetsService } from "../sections/bouquets/bouquets.service";
 import { CompositionsComponent } from "../sections/compositions/compositions.component";
@@ -72,6 +74,7 @@ import { AppEffects } from "./app.effects";
     MenuComponent,
     AdminComponent,
     MainLayoutComponent,
+    LoginPageComponent,
 
 
 
@@ -83,6 +86,7 @@ import { AppEffects } from "./app.effects";
     FormsModule,
     RouterModule,
     CommonModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
@@ -114,6 +118,7 @@ import { AppEffects } from "./app.effects";
     BasketService,
     MenuService,
     ProductService,
+    AuthService,
 
 
   ],

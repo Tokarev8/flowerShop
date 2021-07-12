@@ -7,7 +7,7 @@
   <div class="productBox_imgBox">
 
     <div class="productBox_listImg">
-        <div *ngFor="let img of productService.product.image" class="listImg">
+        <div *ngFor="let img of productService.product.image" class="listImg" id="x">
             <img src="{{img}} "alt=""  (click)="changeMainImg(img)">
         </div>
     </div>
@@ -24,39 +24,31 @@
 
   <div class="productBox_structure">
 
-    <div class="productBox_NamePrice">
-      <div>
+
+    <div class="productBox_Name">
         <p>{{ productService.product.name}}</p>
-      </div>
-      <div>
-        <p>{{ productService.product.price}} <span>₽</span></p>
-      </div>
+    </div>
+
+    <div class="productBox_Price">
+      <p>{{ productService.product.price}} ₽</p>
     </div>
 
 
     <div class="productBox_buttonBox">
       <div class="buttonFlex">
-
-        <button class="productBox_buttonBuy" (click)="buyProduct()">Купить</button>
-
+        <button class="productBox_buttonBuy" (click)="buyProduct(productService.product)">Купить</button>
         <div class="favoriteButton">
-          <button (click)="addFavorites ()">
-            <img *ngIf="productService.product.favorite" src="../../assets/icon/heart-red.png" alt="" class="favorite" (click)="addFavorite(productService.product)">
-            <img *ngIf="!productService.product.favorite" src="../../assets/icon/heart-white2.png" alt="" class="favorite" (click)="addFavorite(productService.product)">
+          <button (click)="addFavorite(productService.product)">
+            <img *ngIf="productService.product.favorite" src="../../assets/icon/heart-red.png" alt="" class="favorite" >
+            <img *ngIf="!productService.product.favorite" src="../../assets/icon/heart-white2.png" alt="" class="favorite" >
           </button>
         </div>
-
       </div>
 
     </div>
 
 
-    <div class="struct">
-      <div>
-        <p>Состав</p>
-        <p>{{ productService.product.structure}}</p>
-      </div>
-    </div>
+
   </div>
 
 
@@ -64,54 +56,24 @@
 
 
 
-<!--<button>-->
-<!--  <a routerLink="admin/product/:id/edit" >Редактировать</a>-->
-<!--</button>-->
-
-<button>
-  <a routerLink ="/admin/edit" >Редактировать</a>
-</button>
-
-
-
-<div class="productBox_description">
-  <p>Описание</p>
-  <p class="productBox_direction">{{ productService.product.description}}</p>
+<div *ngIf = productService.user.status
+     class="edit">
+  <button>
+    <a routerLink ="/admin/edit" >Редактировать</a>
+  </button>
 </div>
 
 
 
 
 
+<div class="productBox_description">
+  <div class="productBox_title">
+    <p>Описание</p>
+  </div>
 
-
-
-<!--  <div class="productBox">-->
-
-
-
-<!--    <div class="productBox_imgBox">-->
-
-<!--      <div class="productBox_listImg">-->
-
-<!--        <div *ngFor="let img of productService.product.image" class="listImg">-->
-<!--          <img src="{{img}} "alt="" width="60%" (click)="changeMainImg(img)">-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="productBox_mainImg">-->
-<!--        <img src="{{productService.mainImage}}" alt="" width="100%">-->
-<!--      </div>-->
-<!--    </div>-->
-
-
-
-
-
-
-
-
-
-
-<!--  </div>-->
-
+  <div class="productBox_text">
+    <p>{{ productService.product.description}}</p>
+    <p> <span> Состав</span>: {{ productService.product.structure}}</p>
+  </div>
+</div>

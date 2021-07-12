@@ -1,4 +1,4 @@
-import {FormControl, FormGroup, ValidatorFn} from "@angular/forms";
+import { FormControl, FormGroup, ValidatorFn } from "@angular/forms";
 
 
 export class MyValidators {
@@ -15,17 +15,4 @@ export class MyValidators {
 
     return pass === confirmPass ? null : { notSame: true };
   }
-
-  // static repetitionLogin
-  // static repetitionEmail
-
-
 }
-
-// export function sameValueAs(group: FormGroup, controlName: string): ValidatorFn {
-//   return (control: FormControl) => {
-//     const myValue = control.value;
-//     const compareValue = group.controls[controlName].value;
-//
-//     return (myValue === compareValue) ? null : {valueDifferentFrom:controlName}; };
-// }

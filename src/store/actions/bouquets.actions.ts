@@ -18,6 +18,7 @@ export enum bouquetsActionsType {
   // initialErrorBouquets = "[BOUQUETS] initial error for array bouquets",
 
   changeFavorites = "[BOUQUETS] change parameter favorites, for element array bouquets",
+  FavoritesTrue = "[BOUQUETS]   favorites true",
 
   changeBouquets = "[BOUQUETS] change  element for array bouquets",
 
@@ -41,7 +42,8 @@ export const loadingBouquets = createAction(`${bouquetsActionsType.LoadingBouque
 export const initialSuccess = createAction(`${bouquetsActionsType.LoadingSuccessBouquets}`, props<{array: ProductInterface[] }>() );
 
 // изменяет параметр favorite
-export const bouquetsChangeFavorites = createAction(`${bouquetsActionsType.changeFavorites}`, props<{element: ProductInterface}>() );
+export const ChangeFavoritesBouquets = createAction(`${bouquetsActionsType.changeFavorites}`, props<{element: ProductInterface}>() );
+export const favoritesBouquetsTrue = createAction(`${bouquetsActionsType.FavoritesTrue}`, props<{newElement: ProductInterface}>() );
 
 export const bouquetsChangeElement = createAction(`${bouquetsActionsType.changeBouquets}`, props<{newElement: ProductInterface}>() );
 

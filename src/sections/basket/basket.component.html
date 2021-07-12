@@ -17,15 +17,13 @@
     </div>
 
     <div class="basketTable_counter">
-      <button (click)="decrise(element)">  - </button>
+      <button (click)="basketService.changeQuantity(element,'-')">  - </button>
       <p>  {{element.quantity}} </p>
-      <button (click)="incrise(element)">  + </button>
+      <button (click)="basketService.changeQuantity(element, '+')">  + </button>
     </div>
 
-
-
     <div class="basketTable_price">
-      <p>{{element.price * element.quantity}}</p>
+      <p>{{element.price * element.quantity}} &#8381;</p>
     </div>
 
   </div>

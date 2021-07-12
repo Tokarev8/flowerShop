@@ -2,8 +2,6 @@
 
 
 
-// arrayProducts!!!!!!!!!!!!!!!!!!!!!!
-
 
 .arrayProducts{
   margin-top: 3%;
@@ -11,16 +9,11 @@
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 100px;
-
-
   box-sizing: border-box;
-
   z-index: 0;
   display: grid;
   grid-template-columns:  1fr 1fr 1fr 1fr;
   justify-items: center;
-
-
 }
 
 
@@ -33,21 +26,11 @@
   padding: 1%;
   margin-top: 20px;
   height: 400px;
-
-
   box-sizing: border-box;
-
-  //overflow: hidden;
-
   a{
-    //border: 1px solid red;
     display: flex;
-    //height: 300px;
-
     height: 80%;
     img{
-
-      //border: 1px solid blue;
       width: 100%;
       object-fit: cover;
     }
@@ -56,39 +39,26 @@
 
 
   .header{
-    //margin-top: auto;
     height: 20%;
     text-align: center;
-    //border: 1px solid red;
   }
 
 
   .button{
     display: none;
     button{
-      border:1px solid #f368d7;
+      border:1px solid #e52b50;
       background-color: #ffffff;
-
       transition-duration: 1s;
-      //outline: none;
       }
     }
-
 }
-
-
-
-
-
 
 .arrayProducts_elementBox:hover{
 
-  //border: 2px solid red;
   border:none;
-  //box-shadow: 0 3px 20px black;
   box-shadow: 0px -7px 20px 5px rgba(50, 50, 50, 0.75);
   box-shadow-bottom: none;
-
   .button{
     z-index: 1;
     background: #ffffff;
@@ -97,13 +67,8 @@
     top: 96%;
     width: 100%;
     height: 20%;
-    //border: 2px solid red;
     border-top:none;
-    //box-shadow: 0 3px 20px black;
     box-shadow:         0px 15px 10px 5px rgba(50, 50, 50, 0.75);
-
-    //box-sizing: border-box;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,13 +77,10 @@
       height: 50%;
       box-shadow:0px 5px 0px rgba(50, 50, 50, 0.75);
       border-radius: 10px ;
-
     }
 
-
     button:hover{
-      background-color: #f368d7;
-
+      background-color: #e52b50;
     }
 
     button:active{
@@ -134,45 +96,25 @@
 
 
 .favorite{
-  //display: none;
-    // background-image: url("../../assets/icon/heart-white2.png");
-   // background-image: url("../../assets/icon/heart-red.png");
     border: none;
     position: absolute;
     width: 28px;
     height: 26px;
     left: 10px;
     top: 10px;
-
 }
-
 
 .ActiveTag{
   color: red;
 }
 
 
-
-
-
-
-
-
-
-
 @font-face {
-
   font-family: "Measure";
-
   src: url("../../assets/font/Measure.ttf") format("truetype");
   font-style: normal;
   font-weight: normal;
 }
-
-
-
-/////////////////////////////////////////////
-
 
 
 @media (max-width: 1200px) {
@@ -181,14 +123,11 @@
     width: 100%;
     padding-right: 0;
     margin-right: 0;
-
     .arrayProducts_elementBox{
       justify-self: center;
       width: 90%;
       padding: 10px;
     }
-
-
   }
 }
 
@@ -205,8 +144,6 @@
       padding: 10px;
       box-sizing: border-box;
     }
-
-
   }
 }
 
@@ -214,80 +151,25 @@
 @media (max-width: 750px) {
   .arrayProducts {
     grid-template-columns:  1fr 1fr;
-
-
     .arrayProducts_elementBox{
       width: 250px;
       height: 300px;
     }
-
-
   }
 }
 
 @media (max-width: 510px) {
   .arrayProducts {
     grid-template-columns:  1fr 1fr;
-
-
     .arrayProducts_elementBox{
       width: 150px;
       height: 200px;
     }
-
     .header{
       :first-child{display: none}
     }
   }
 }
-
-
-//
-//@media (max-width: 460px) {
-//  .arrayProducts {
-//    grid-template-columns: 1fr 1fr 1fr;
-//
-//
-//    .arrayProducts_elementBox{
-//      width: 150px;
-//      height: 200px;
-//    }
-//
-//
-//  }
-//}
-//
-
-
-
-
-//
-//@media (max-width: 750px){
-//  .arrayProducts{
-//    grid-template-columns:  1fr;
-//    width: 65%;
-//  }
-//  .arrayProducts_elementBox{
-//    height: 400px;
-//    a{
-//      height: 85%;
-//    }
-//  }
-//
-//
-//  .header{
-//    //margin-top: auto;
-//    height: 15%;
-//    text-align: center;
-//    padding: 0;
-//    margin: 0;
-//    //border: 1px solid red;
-//    p{
-//      padding: 0;
-//      margin: 0;
-//    }
-//  }
-//}
 
 
 @media (max-width: 450px){

@@ -59,3 +59,134 @@
   </div>
 
 </div>
+
+
+
+<div class="miniMenu">
+
+  <div class="miniMenu_1">
+
+    <div class="miniMenu_search">
+      <input type="text" placeholder="Поиск" (input)="menuService.setSearchText($event)">
+    </div>
+
+  </div>
+
+
+
+
+
+<div class="miniMenu_2">
+
+  <button class="miniMenu_left" (click)="minusMiniMenu()">&#10094;</button>
+
+  <p *ngIf="miniMenu === 0" (click)="setShowMenu(0)">Цена</p>
+
+  <p *ngIf="miniMenu === 1" (click)="setShowMenu(1)">Цветы</p>
+
+  <p *ngIf="miniMenu === 2" (click)="setShowMenu(2)">Повод</p>
+
+  <p *ngIf="miniMenu === 3" (click)="setShowMenu(3)">Сортировать</p>
+
+  <button class="miniMenu_right" (click)="plusMiniMenu()">&#10095;</button>
+</div>
+
+  <div class="miniMenu_3">
+
+        <div
+             [ngClass] = "{
+             miniMenu_price: showMiniMenu === 0,
+             hide: showMiniMenu !== 0
+             }"
+        >
+          <div>
+            <span>От</span><input type="number" placeholder="От" [(ngModel)]="minPrice" (input)="menuService.SetMinPrice( minPrice)" min="0">
+          </div>
+          <div>
+            <span>До</span><input type="number" placeholder="До" [(ngModel)]="maxPrice" (input)="menuService.SetMaxPrice( maxPrice)" min="0">
+          </div>
+        </div>
+
+
+      <div
+        [ngClass] = "{
+             miniMenu_flower: showMiniMenu === 1,
+             hide: showMiniMenu !== 1
+             }"
+         >
+
+        <div *ngFor ="let flower of arrayFlowers; let i = index; ">
+
+            <p (click)="addFlowersTag(arrayFlowers[i])"
+               [class.ActiveTag]="activeTagArrayFlower.includes(arrayFlowers[i])">
+              {{arrayFlowers[i]}}
+            </p>
+
+            <p (click)="addFlowersTag(arrayFlowers2[i])"
+               [class.ActiveTag]="activeTagArrayFlower.includes(arrayFlowers2[i])">
+              {{arrayFlowers2[i]}}
+            </p>
+        </div>
+
+      </div>
+
+
+
+    <div
+      [ngClass] = "{
+             miniMenu_reason: showMiniMenu === 2,
+             hide: showMiniMenu !== 2
+             }"
+    >
+      <div *ngFor ="let reason of arrayReasons; let i = index; " >
+        <p  (click)="addReasonTage(arrayReasons[i])"
+            [class.ActiveTag]="activeTagArrayReason.includes(arrayReasons[i])"
+        >{{arrayReasons[i]}}</p>
+
+        <p  (click)="addReasonTage(arrayReasons2[i])"
+            [class.ActiveTag]="activeTagArrayReason.includes(arrayReasons2[i])"
+        >{{arrayReasons2[i]}}</p>
+      </div>
+
+    </div>
+
+
+
+
+    <div
+      [ngClass] = "{
+             miniMenu_sort: showMiniMenu === 3,
+             hide: showMiniMenu !== 3
+             }">
+
+          <div>
+            <p (click)="sortPopular()">Популярность <span>{{sortTextPopular}}</span>
+          </div>
+          <div>
+            <p (click)="sortPrice()">Цена <span>{{sortTextPrice}}</span></p>
+          </div>
+
+
+      </div>
+
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

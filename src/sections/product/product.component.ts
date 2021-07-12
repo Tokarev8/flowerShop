@@ -1,8 +1,11 @@
 
-import {ChangeDetectorRef, Component, Input, OnInit} from "@angular/core";
+import { ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
 
+import { Router } from "@angular/router";
 import { ProductInterface } from "../../interfaces/product-state";
 import { MainService } from "../../service/main.service";
+import { BasketService } from "../basket/basket.service";
+import { FavoritesService } from "../favorites/favorites.service";
 import { ProductService } from "./product.service";
 
 @Component({
@@ -15,19 +18,21 @@ export class ProductComponent {
 constructor(public productService: ProductService,
             public mainService: MainService,
             private ref: ChangeDetectorRef,
+            private favoritesService: FavoritesService,
+            private basketService: BasketService,
+            private router: Router,
 ) {
-  console.log(this.productService.product);
+
 }
 
 
 
 
-  public buyProduct(): void {  // Метод который добавляет товар в корзину, и  переходит в корзину пользователя
-    console.log("buyProduct");
-  }
-
-  public addFavorites(): void  {  // метод добавляющий товар в избранное
-    console.log("addFavorites");
+  public buyProduct(product: ProductInterface): void {
+    if (product.name !== "") {
+      this.basketService.addElement(product);
+      this.router.navigate(["/basket"]);
+    }
   }
 
   changeMainImg (img: string): void {
@@ -35,22 +40,12 @@ constructor(public productService: ProductService,
   }
 
   addFavorite(product: ProductInterface): void {
-    this.mainService.addFavorite(product);
-    const objCopy: ProductInterface = Object.assign({}, product);
-    objCopy.favorite = !objCopy.favorite;
-    this.productService.product = objCopy;
-
-  }
-
-  goToEdit(): void {
-    // this.productService.product
+    if (product.name !== "") {
+      this.favoritesService.addFavorite(product);
+      const objCopy: ProductInterface = Object.assign({}, product);
+      objCopy.favorite = !objCopy.favorite;
+      this.productService.product = objCopy;
+    }
   }
 }
-
-
-
-// Компонент который получает на вход данные о товаре
-// выводит их
-// и позволяет добавить в корзину и купить  , в избранные
-
 

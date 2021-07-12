@@ -25,7 +25,7 @@ export const favoritesAddElement = createAction(`${favoritesActionsType.addEleme
   props<{element: ProductInterface }>() );
 
 export const favoritesAddElements = createAction(`${favoritesActionsType.addElementsFavorites}`,
-  props<{array: ProductInterface[] }>() );
+  props<{newArray: ProductInterface[] }>() );
 
 export const favoritesDeleteElement = createAction(`${favoritesActionsType.deleteElementFavorites}`, props<{element: ProductInterface }>() );
 

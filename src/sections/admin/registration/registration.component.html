@@ -57,7 +57,7 @@
 
 
 
-        <input type="text" id="ReepeatedPassword" placeholder="Повторите пароль"
+        <input type="password" id="ReepeatedPassword" placeholder="Повторите пароль"
                formControlName="repeatPassword"
                [ngClass] = "{
               valid: !formReg.get('repeatPassword')?.invalid && formReg.get('repeatPassword')?.touched,
@@ -116,5 +116,9 @@
 
 
   </form>
+
+  <div class="returnMainPage">
+    <a  routerLink="/" >Вернуться на главную</a>
+  </div>
 
 </div>

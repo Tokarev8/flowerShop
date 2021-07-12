@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
-import { ProductInterface } from "../../interfaces/product-state";
-import { Url } from "../../interfaces/url";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
 import { LoadBackService } from "../../service/loadback.service";
-import { MainService } from "../../service/main.service";
+import { userSelector } from "../../store/selectors/user.selector";
+import { initializtionUser, UsersInterface } from "../../store/states/state-categories/user-state";
 
 @Component({
   selector: "header-component",
@@ -12,27 +13,21 @@ import { MainService } from "../../service/main.service";
 export class HeaderComponent {
 
   public switchBurger: boolean = false;
+  private user$: Observable<UsersInterface> = this.store.select(userSelector);
+  public user: UsersInterface = initializtionUser;
 
-  constructor( private loadBackService: LoadBackService, private mainService: MainService) {
-    console.log("");
-  }
-
-
-
-  goToBouquets(): void {
-  this.mainService.setUrl(Url.bouquets);
-  }
-
-  goToFavorits(): void {
-    this.mainService.setUrl(Url.favorites);
-  }
-
-  goToFlowers(): void {
-    this.mainService.setUrl(Url.flowers);
+  constructor( private loadBackService: LoadBackService, public store: Store) {
+    this.user$.subscribe( user => {
+      this.user = user;
+    });
   }
 
 
   burger(): void {
+    this.switchBurger = !this.switchBurger;
+  }
+
+  closeBurger(): void {
     this.switchBurger = !this.switchBurger;
   }
 }

@@ -15,8 +15,6 @@
   font-size: 30px;
   border-bottom: 1px solid gainsboro;
 
-
-
   .basketProduct_imageBlock{
     display: flex;
     width: 20%;
@@ -83,15 +81,11 @@
     justify-content: center;
   }
 
-
-
 }
 
 
 
 .placeAnOrder{
-  // border: 1px solid black;
-  //margin: 10px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -99,11 +93,11 @@
   justify-content: center;
   font-size: 30px;
   margin-bottom: 100px;
-
   p{
     margin-right: 2%;
   }
   button{
+    color: black;
     height: 60px;
     width: 240px;
     background-color: white;
@@ -112,46 +106,38 @@
     padding:15px;
     transition-duration: 0.5s;
   }
-
   button:hover{
-
-    background-color: #e10c73;
-
+    background-color: #e52b50;
   }
-
 }
 
 
+.basketProduct_mini{
+  display: none;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 40%;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .basketProduct_mini_imageBlock{
+    display: grid;
+    justify-content: center;
+    width: 70%;
+    border: 1px solid red;
+    img{
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      border: 1px solid green;
+    }
+  }
+}
 
 @font-face {
-
   font-family: "Montserrat Alternates Regular";
-
   src: url("../../assets/font/Montserrat Alternates Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: normal;

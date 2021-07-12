@@ -4,13 +4,6 @@
 <div class="main_block">
 
 
-
-
-
-
-
-
-
   <div class="arrayProducts">
 
 
@@ -24,7 +17,6 @@
             <p>{{element.name}}</p>
             <p>{{element.price}} ₽</p>
 
-            <!-- <button class="favorite"></button> -->
         </div>
 
         <div class="button">
@@ -33,8 +25,12 @@
 
 
 
-        <img *ngIf="element.favorite" src="../../assets/icon/heart-red.png" alt="" class="favorite" (click)="addFavorite(element)">
-        <img *ngIf="!element.favorite" src="../../assets/icon/heart-white2.png" alt="" class="favorite" (click)="addFavorite(element)">
+        <img *ngIf="element.favorite"
+             src="../../assets/icon/heart-red.png" alt="" class="favorite"
+             (click)="favoritesService.addFavorite(element)">
+        <img *ngIf="!element.favorite"
+             src="../../assets/icon/heart-white2.png" alt="" class="favorite"
+             (click)="favoritesService.addFavorite(element)">
 
 
       </div>
@@ -43,3 +39,4 @@
 </div>
 
 
+<button></button>

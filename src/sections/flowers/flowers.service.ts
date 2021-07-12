@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { ProductInterface } from "../../interfaces/product-state";
-
-import { Store } from "@ngrx/store";
-import { favoritesArraySelector } from "../../store/selectors/favorites.selector";
 import { flowersArraySelector } from "../../store/selectors/flowers.selector";
+import { userSelector } from "../../store/selectors/user.selector";
+import { UsersInterface } from "../../store/states/state-categories/user-state";
+import { FavoritesService } from "../favorites/favorites.service";
+
 
 
 
@@ -15,14 +17,15 @@ export class FlowersService {
   public copyArray: ProductInterface[] = [];
 
   public flowers$: Observable<ProductInterface[]> = this.store.select(flowersArraySelector);
+  public user$: Observable<UsersInterface> = this.store.select(userSelector);
 
+  constructor(private store: Store, private favoritesService: FavoritesService) {
 
-  constructor(public store: Store) {
     this.flowers$.subscribe( array => {
       this.originalArray = array;
-      this.copyArray = this.originalArray.map((element: ProductInterface) => element);
+        this.copyArray =  this.originalArray.map((element: ProductInterface) => element);
+      });
 
-    });
-  }
+}
 
 }

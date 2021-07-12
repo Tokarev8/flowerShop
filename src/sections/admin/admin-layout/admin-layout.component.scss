@@ -2,14 +2,10 @@
 .navbarAdmin{
   padding-right: 3%;
   padding-left: 3%;
-
   display: flex;
-
-  background-color: #f368d7;
-
+  background-color: #e52b50;
   ul{
     width: 30%;
-
     display: flex;
     justify-content: space-between;
     margin-left: auto;
@@ -20,5 +16,6 @@
   }
 }
 
-
-
+h2{
+  text-align: center;
+}

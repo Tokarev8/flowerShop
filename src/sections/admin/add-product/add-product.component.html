@@ -117,7 +117,6 @@
               invalid: InvalidPhotoControls(idx)}">
 
         <div *ngIf = "myform.get('photo')?.invalid && myform?.get('photo')?.touched">
-<!--        <div *ngIf = "myform.get('photo')?.get('{{idx}}')?.touched ">-->
           <small *ngIf = "getPhotoNameControls(idx)"
           >Введите адрес фотографии</small>
         </div>

@@ -4,59 +4,36 @@
   src: url(../../assets/font/BantyBold.ttf);
 }
 
-
-
-
-
 .headerBlock{
-
   width: 100%;
   background-color: white;
   position: fixed;
   z-index: 1;
   margin-bottom: 200px;
   display: grid;
-  //flex-direction: 1fr 1fr/1fr;
-
-
-
 }
 
 .headerBlock_title{
-
   height: 70px;
   font-family: Arial;
   font-size: 18px;
   text-align: center;
   display: flex;
-  //justify-content: center;
-  //justify-content: space-between;
   align-items: center;
 
-
 .title{
-  //flex-basis: 80%;
+
   margin-right: auto;
   margin-left: auto;
-  //border: 1px solid black;
-  padding-left: 12%;
-  //justify-content: flex-end;
 }
 .headerBlock_contacts{
-
   box-sizing: border-box;
-
   p{
-
     padding: 0;
     margin: 0;
   }
   .headerBlock_socialNetworks{
-
-
-
     display: flex;
-
     a{
       margin-right: 3px;
       margin-top: 3px;
@@ -64,10 +41,7 @@
       padding-bottom: 0;
     }
   }
-
 }
-
-
 
 }
 
@@ -76,76 +50,56 @@
 .headerBlock_topMenu{
   display:flex;
   justify-content: center;
-  background-color:  #f368d7;
+  background-color:  #e52b50;
   height: 40px;
-
   font-family: Arial;
   font-size: 18px;
-
   .buttonBurger{
     display: none;
   }
 
 ul{
-
   display: flex;
-
   width: 70%;
   justify-content: space-evenly;
   align-items: center;
-
   li{
      list-style-type: none;
     a{
       text-decoration: none;
     }
-
   }
-
 }
 
 }
-
-
 
 .active{
-  color:#940577;
+  color:white;
 }
-
-
-
-
-
-
-
-
-
-///////////////
 
 
 
 
 .topMenuBurger{
-  display: flex;/* технология флексбокс */
-  align-items: center; /* выравнивание по центру */
-  justify-content: center; /* выравнивание по центру */
-  background-color: #e38ec9;
-  width: 100vw; /* ширина блока меню */
-  z-index: 10;/* слой ниже кнопки */
-  position: fixed; /* блок зафиксирован */
-  left: -100vw;/* скрывание блока с меню */
-  top: 0; /* позиция от левого верха */
-  transition: all 0.5s;/* плавное выдвижение блока */
-  opacity: .95;/* блок имеет прозрачность */
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e52b50;
+  width: 100vw;
+  z-index: 10;
+  position: fixed;
+  left: -100vw;
+  top: 0;
+  transition: all 0.5s;
+  opacity: .95;
   ul {
-    list-style: none; /* убрать маркеры */
+    list-style: none;
     padding: 0;
     margin-top: 60px;
-    height: 100vh; /* блок занимает всю высоту браузера */
+    height: 100vh;
   }
   a{
-    display: block; /* из строчного в блочный */
+    display: block;
     color: #6f2d35;
     line-height: 50px;
     text-decoration: none;
@@ -154,13 +108,13 @@ ul{
     font-weight: bold;
     letter-spacing: 3px;
     transition: all 0.3s;
-    width: 100vw; /* блоки с ссылками на всю ширину */
+    width: 100vw;
     display: flex;
-    justify-content: center; /* выравнивание по центру */
+    justify-content: center;
   }
-  /* Эффект наведения мыши на ссылки */
+
   a:hover{
-    background-color: #efc5fa;
+    background-color: white;
     width: 100vw;
   }
 
@@ -172,3 +126,13 @@ ul{
 .activeBurger{
   background-image: url("../../assets/icon/burger2.png");
 }
+
+
+.topMenuBurger_close{
+  font-size: 35px;
+  font-weight: bold;
+  text-align: end;
+  padding-right: 60px;
+  user-select: none;
+}
+

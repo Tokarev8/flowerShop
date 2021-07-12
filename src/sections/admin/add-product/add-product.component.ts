@@ -1,9 +1,7 @@
 
-
-
-
 import { Component } from "@angular/core";
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Categories } from "../../../interfaces/categories";
 import {
   flowers,
   flowersArray,
@@ -12,8 +10,7 @@ import {
   reasonsArray,
   reasonsArray2,
 } from "../../../interfaces/tags/tags-interface";
-import {Categories} from "../../../interfaces/categories";
-import {LoadBackService} from "../../../service/loadback.service";
+import { LoadBackService } from "../../../service/loadback.service";
 
 
 @Component({
@@ -25,14 +22,10 @@ export class AddProductComponent  {
 
   public myform: FormGroup;
 
-
-
   public hideS: boolean = false;
   public hideD: boolean = false;
-  public hideP: boolean = false;
   public hideF: boolean = false;
   public hideR: boolean = false;
-
 
   public text: string = "false";
 
@@ -43,7 +36,6 @@ export class AddProductComponent  {
   public reasonsTagArray: reason[] = [];
   public reasonsActiveTag: reason[] = [];
   public reasonsTagStr: string = "";
-
 
   public flowers: FormArray =  new FormArray([]);
 
@@ -64,8 +56,6 @@ export class AddProductComponent  {
     this.flowersTagArray = this.flowersTagArray.concat(flowersArray, flowersArray2);
 
     this.reasonsTagArray = this.reasonsTagArray.concat( reasonsArray, reasonsArray2);
-
-
   }
 
   addPhoto(): void {
@@ -81,19 +71,14 @@ export class AddProductComponent  {
   getPhotoNameControls(name: number) {
     return(this.myform.get("photo")?.get(`${name}`)?.touched);
   }
+  // tslint:disable-next-line:typedef
   InvalidPhotoControls(name: number) {
     return(this.myform.get("photo")?.get(`${name}`)?.invalid);
   }
 
 
-
-
-
-
   showFlowers(): void {
     this.hideF = !this.hideF;
-
-    console.log(this.myform.get("price")?.errors);
   }
 
   showReason(): void {
@@ -101,9 +86,7 @@ export class AddProductComponent  {
   }
 
   hideStructure(): void {
-
     this.hideS = !this.hideS;
-
   }
 
   hideDescription(): void {
@@ -127,10 +110,7 @@ export class AddProductComponent  {
           this.flowersTagStr += `;${element}`;
         }
     }
-
-
   }
-
 
 
   addReason(reasonElement: reason): void {
@@ -147,26 +127,13 @@ export class AddProductComponent  {
     }
   }
 
-
-
-
   submit(): void {
     if (this.myform.valid) {
-      console.log("Form: ", this.myform);
       const formData = {...this.myform.value};
-
-      console.log("Form Data:", formData);
       this.translete(formData);
-
+      this.myform.reset();
     }
-
-
-    // привести в форму в продукт интерфейс
-
   }
-
-
-
 
 // tslint:disable-next-line:no-any
    translete ( object: any): void {
@@ -193,16 +160,8 @@ export class AddProductComponent  {
       case Categories.gifts: url = "http://localhost:3000/gifts"; break;
       default: break;
     }
-
-    console.log("Product", product);
-     console.log("URL: ", url);
-
-
     this.loadBackService.postElement(url, product);
-
   }
-
-
 }
 
 

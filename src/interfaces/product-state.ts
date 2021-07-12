@@ -30,7 +30,7 @@ export const initialStateProduct: ProductInterface = {
   discount: 0,
 };
 
-export interface postProductInterface {
+export interface PostProductInterface {
   name: string;
   image: string[];
   price: number;

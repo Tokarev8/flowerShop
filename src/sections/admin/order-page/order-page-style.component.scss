@@ -1,0 +1,56 @@
+
+
+
+
+@media (max-width: 1000px) {
+  .OrdersBlock_order{
+    width: 99%;
+  }
+  .sortBox{
+    width: 100%;
+  }
+}
+
+
+
+@media (max-width: 550px) {
+  .OrdersBlock_order{
+  }
+  .sortBox{
+    //grid-template-columns: 1fr;
+    //grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    justify-content: center;
+    .sortBox_numberOrder{
+      margin-top: 20px;
+      div{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        text-align: center;
+      }
+    }
+    .sortBox_date{
+      div{
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+      }
+    }
+    .sortBox_condition{
+      margin-top: 15px;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      div{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 5px;
+        justify-content: center;
+        label{text-align: end}
+        input{ justify-self: center;}
+      }
+    }
+  }
+}

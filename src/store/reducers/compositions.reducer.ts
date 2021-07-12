@@ -4,6 +4,7 @@ import { ProductInterface } from "../../interfaces/product-state";
 import {
   changeFavoritesComposistions,
   compositionsChangeElement,
+  favoritesComposistionsTrue,
   loadingComposistions,
   successfulLoadingComposistions,
 } from "../actions/compositions.actions";
@@ -31,7 +32,7 @@ export const compositionsReducer = createReducer(
 
     state.array.forEach((elementArray) => {
 
-      if (elementArray === action.element) {
+      if (elementArray._id === action.element._id) {
 
         const objCopy: ProductInterface = Object.assign({}, elementArray);
         objCopy.favorite = !objCopy.favorite;
@@ -43,6 +44,20 @@ export const compositionsReducer = createReducer(
   }),
 
   on(compositionsChangeElement, (state, action) =>  {
+    const modifiedArray: ProductInterface[] = [];
+
+    state.array.forEach((elementArray) => {
+
+      if (elementArray._id === action.newElement._id) {
+
+        const newObj: ProductInterface = Object.assign({}, action.newElement);
+        modifiedArray.push(newObj);
+      } else { modifiedArray.push(elementArray); }
+    });
+    return {...state, array: modifiedArray};
+  }),
+
+  on(favoritesComposistionsTrue, (state, action) =>  {
     const modifiedArray: ProductInterface[] = [];
 
     state.array.forEach((elementArray) => {

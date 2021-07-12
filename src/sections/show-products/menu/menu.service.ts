@@ -13,9 +13,8 @@ import {
 @Injectable()
 export class MenuService {
 
-  // public oberablce: Observable<number> = new Observable<number>();
-   public subject$ = new Subject();
 
+   public subject$: Subject<void> = new Subject<void>();
   public minPrice: number = 0;
   public maxPrice: number = 0;
 
@@ -24,10 +23,12 @@ export class MenuService {
 
   public sortPopular: string = "";
   public sortPrice: string = "";
-
   public searchText: string = "";
+  public popular: boolean = false;
+  public price: boolean = false;
 
 
+  // tslint:disable-next-line:no-any
   setSearchText(event: any): void {
     this.searchText = event.target.value;
     this.subject$.next();
@@ -64,8 +65,14 @@ export class MenuService {
      }
 
     // сортировка
-     copyArray = popularSort(copyArray, this.sortPopular);
-     copyArray = priceSort(copyArray, this.sortPrice);
+     if (this.popular) {
+       copyArray = popularSort(copyArray, this.sortPopular);
+     }
+
+     if (this.price) {
+       copyArray = priceSort(copyArray, this.sortPrice);
+     }
+
 
     // поиск
 
