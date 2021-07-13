@@ -6,7 +6,7 @@ import { Store } from "@ngrx/store";
 
 import { Categories } from "../../interfaces/categories";
 import { LoadBackService } from "../../service/loadback.service";
-import { addOrder, loadingOrders } from "../../store/actions/orders.action";
+import { addOrder } from "../../store/actions/orders.action";
 import { ClearBasketArray, deleteBasketElement, setUser } from "../../store/actions/user.actions";
 import { bouquetsArraySelector } from "../../store/selectors/bouquet.selector";
 import { compositionsArraySelector } from "../../store/selectors/compositions.selector";

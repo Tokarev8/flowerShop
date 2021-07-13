@@ -43,6 +43,7 @@ import { PromotionsComponent } from "../sections/promotions/promotions.component
 import { PromotionsService } from "../sections/promotions/promotions.service";
 import { MenuComponent } from "../sections/show-products/menu/menu.component";
 import { MenuService } from "../sections/show-products/menu/menu.service";
+import { SimilarProductsComponent } from "../sections/similar-products/similar-products.component";
 import { BasketEffects } from "../store/effects/basket.effects";
 import { CompositionsEffects } from "../store/effects/compositions.effects";
 import { GiftsEffects } from "../store/effects/gifts.effects";
@@ -75,6 +76,7 @@ import { AppEffects } from "./app.effects";
     AdminComponent,
     MainLayoutComponent,
     LoginPageComponent,
+    SimilarProductsComponent,
 
 
 
